@@ -1,0 +1,30 @@
+header {
+    background-color: var(--corHeaderFooter);
+    height: var(--tamanhoHeaderFooter);
+    display: flex;
+}
+
+header .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+header .container h1 {
+    font-size: 2rem;
+}
+
+header .container nav {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+
+header .container nav a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.logo {
+    height: 2.5rem;
+}

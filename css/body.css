@@ -1,0 +1,21 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --tamanhoHeaderFooter: 100px;
+    --tamanhoMain: calc(100vh - 2 * var(--tamanhoHeaderFooter));
+    --corHeaderFooter: #470c16;
+    --corMain: #323232;
+}
+
+body {
+    color: #ffffff;
+}
+
+.container {
+    width: 80%;
+    margin: auto;
+}
