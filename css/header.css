@@ -17,7 +17,7 @@ header .container h1 {
 header .container nav {
     display: flex;
     flex-direction: row;
-    gap: 1rem;
+    gap: 2rem;
 }
 
 header .container nav a {

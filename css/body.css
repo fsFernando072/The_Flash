@@ -4,6 +4,16 @@
     box-sizing: border-box;
 }
 
+@font-face {
+    font-family: 'Roboto-Regular';
+    src: url('../fonte/Roboto/static/Roboto-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'Roboto-ExtraBold';
+    src: url('../fonte/Roboto/static/Roboto-ExtraBold.ttf');
+}
+
 :root {
     --tamanhoHeaderFooter: 100px;
     --tamanhoMain: calc(100vh - 2 * var(--tamanhoHeaderFooter));
@@ -11,8 +21,13 @@
     --corMain: #323232;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     color: #ffffff;
+    font-family: 'Roboto-Regular';
 }
 
 .container {
