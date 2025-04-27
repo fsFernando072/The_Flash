@@ -1,4 +1,7 @@
 header {
+    position: sticky;
+    top: 0;
+    z-index: 1;
     background-color: var(--corHeaderFooter);
     height: var(--tamanhoHeaderFooter);
     display: flex;
@@ -21,8 +24,13 @@ header .container nav {
 }
 
 header .container nav a {
-    color: #ffffff;
+    color: var(--corTexto);
     text-decoration: none;
+    transition: all 0.2s ease-in-out;
+}
+
+header .container nav a:hover {
+    color: var(--corBotao);
 }
 
 .logo {

@@ -19,6 +19,10 @@
     --tamanhoMain: calc(100vh - 2 * var(--tamanhoHeaderFooter));
     --corHeaderFooter: #470c16;
     --corMain: #323232;
+    --corCard: #222222;
+    --corTexto: #ffffff;
+    --corTexto2: #000000;
+    --corBotao: #FAB110; 
 }
 
 html {
@@ -26,7 +30,7 @@ html {
 }
 
 body {
-    color: #ffffff;
+    color: var(--corTexto);
     font-family: 'Roboto-Regular';
 }
 

@@ -9,6 +9,7 @@ main {
 
 .pagina {
     min-height: 80vh;
+    scroll-margin-top: var(--tamanhoHeaderFooter);
 }
 
 main .cards {
@@ -18,7 +19,7 @@ main .cards {
 
 main .card {
     width: fit-content;
-    background-color: #222222;
+    background-color: var(--corCard);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -27,7 +28,10 @@ main .card {
     padding: 1rem;
     transition: all 0.2s ease-in-out;
     cursor: pointer;
+    border: 0.1rem solid var(--corTexto2);
+    border-radius: 0.5rem;
 }
+
 
 main .card:hover{
     transform: scale(1.1);
@@ -39,4 +43,13 @@ main .card img {
     border-radius: 100%;
     object-fit: cover;
     transition: all 0.3s ease-in-out;
+}
+
+main .card p {
+    font-size: 1.5rem;
+} 
+
+#home {
+    background-image: url("../img/fundo/hall.jpeg");
+    background-size: cover;
 }
