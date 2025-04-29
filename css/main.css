@@ -62,26 +62,42 @@ main .card p {
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
+    width: 300%;
     height: 100%;
     z-index: 1;
-    animation: ease-in-out infinite 12s fundo;
+    overflow-x: hidden;
+    display: flex;
+    animation: ease-in-out infinite 15s slide;
 }
 
-@keyframes fundo {
+.fundo img{
+    width: 100vw;
+    filter: opacity(0.5);
+}
+
+@keyframes slide {
     0% {
-        background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0,0,0,0.5)), url("../img/fundo/flash.jpeg");
-        background-size: cover;
+        margin-left: 0%;
     }
 
-    50% {
-        background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0,0,0,0.5)), url("../img/fundo/flash2.jpeg");
-        background-size: cover;
+    15% {
+        margin-left: 0%;
     }
 
-    100% {
-        background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0,0,0,0.5)), url("../img/fundo/flash3.jpeg");
-        background-size: cover;
+    33% {
+        margin-left: -100%;
+    }
+
+    48% {
+        margin-left: -100%;
+    }
+
+    66% {
+        margin-left: -200%;
+    }
+
+    90% {
+        margin-left: -200%;
     }
 }
 
