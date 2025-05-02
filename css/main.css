@@ -10,6 +10,37 @@ main {
 .pagina {
     min-height: 80vh;
     scroll-margin-top: var(--tamanhoHeaderFooter);
+    padding: 1rem 0;
+}
+
+.pagina .titulo {
+    text-align: center;
+    padding-bottom: 2rem;;
+}
+
+.conteudo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 3rem;
+}
+
+#flash {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.conteudo img {
+    width: 40%;
+    height: fit-content;
+    object-fit: cover;
+}
+
+.conteudo p {
+    text-align: justify;
+    line-height: 2rem;
 }
 
 main .cards {
@@ -34,7 +65,7 @@ main .card {
 
 
 main .card:hover{
-    transform: scale(1.1);
+    transform: scale(1.05);
 }
 
 main .card img {
@@ -118,4 +149,12 @@ main .card h2 {
     p {
         font-size: 1.5rem;
     }
+}
+
+.descricao {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
 }

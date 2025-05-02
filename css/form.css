@@ -1,0 +1,75 @@
+.form-login {
+    display: flex;
+    align-items: center;
+    width: 70%;
+    margin: auto;
+    height: 60vh;
+    background-color: var(--corCard);
+    border-radius: 1rem;
+}
+
+.form-cadastro {
+    display: flex;
+    align-items: center;
+    width: 70%;
+    margin: auto;
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+    height: 80vh;
+    background-color: var(--corCard);
+    border-radius: 1rem;
+}
+
+.pagina-login {
+    display: flex;
+}
+
+.redirecionar {
+    border-radius: 1rem 0 0 1rem;
+    background-color: var(--corHeaderFooter);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 40%;
+    height: 100%;
+    text-align: center;
+    gap: 2rem;
+}
+
+.redirecionar .titulo {
+    font-size: 2rem;
+}
+
+.login {
+    width: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.login .titulo {
+    color: var(--corBotao);
+}
+
+input {
+    padding: 1rem;
+    width: 60%;
+    background-color: var(--corMain);
+    border-radius: 0.2rem;
+    border: none;
+    color: var(--corTexto);
+    margin-bottom: 1rem;
+}
+
+label {
+    width: 60%;
+    text-align: left;
+}
+
+button {
+    background: none;
+    cursor: pointer;
+}

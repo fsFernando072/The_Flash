@@ -20,16 +20,17 @@ header .container h1 {
 header .container nav {
     display: flex;
     flex-direction: row;
+    align-items: center;
     gap: 2rem;
 }
 
-header .container nav a {
+header .container nav a.links {
     color: var(--corTexto);
     text-decoration: none;
     transition: all 0.2s ease-in-out;
 }
 
-header .container nav a:hover {
+header .container nav a.links:hover {
     color: var(--corBotao);
 }
 
@@ -99,4 +100,19 @@ header .container nav a:hover {
 
 .menu ul li a {
     font-size: 1.4rem;
+}
+
+.botaoLink {
+    color: var(--corBotao);
+    text-decoration: none;
+    padding: 1rem 2rem;
+    border-radius: 0.2rem;
+    border: 0.1rem solid var(--corBotao);
+    transition: all 0.2s ease-in-out;
+}
+
+.botaoLink:hover {
+    background-color: var(--corBotao);
+    color: var(--corTexto2);
+    border: 0.1rem solid var(--corBotao);
 }
