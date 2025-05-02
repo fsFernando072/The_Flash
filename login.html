@@ -44,7 +44,24 @@
                 <label for="senha"> Senha </label>
                 <input type="password" name="senha" id="senha" placeholder="Digite sua Senha">
 
-                <button class="botaoLink"> Entrar </button>
+                <button class="botaoLink" id="botaoEntrar"> Entrar </button>
+            </section>
+
+            <section class="modal">
+                <section class="modal-conteudo">
+                    <button class="fechar" id="fechar">
+                        <img src="img/icones/fecharImg.png" alt="Icone de Fechar">
+                    </button>
+
+                    <section id="respostas">
+                        <img src="img/icones/erroImg.png" alt="Icone de erro" class="iconesGra">
+    
+                        <p>
+                            <img src="img/icones/erroImg.png" alt="Icone de erro" class="iconesPeq">
+                            Usuário inválido
+                        </p>
+                    </section>
+                </section>
             </section>
        </section>
     </main>
@@ -54,5 +71,8 @@
             <p> &copy; Fernando - 2025 </p>
         </section>
     </footer>
+
+    <script src="js/modal.js"></script>
+    <script src="js/formLogin.js"></script>
 </body>
 </html>
