@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title> Cadastro - The Flash </title>
+        <link rel="stylesheet" href="css/body.css">
+        <link rel="stylesheet" href="css/header.css">
+        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/footer.css">
+        <link rel="stylesheet" href="css/form.css">
+        <link rel="shortcut icon" href="img/logo/logoCurta.png" type="image/x-icon">
+    </head>
+    <body>
+        <header>
+            <section class="container">
+                <a href="index.html">
+                    <img src="img/logo/logoExtensa.png" alt="Logo de The Flash" class="logo">
+                </a>
+        
+                <nav>
+                    <a href="index.html#home" class="links"> Home </a>
+                    <a href="index.html#flash" class="links"> Flash </a>
+                    <a href="index.html#equipe" class="links"> Equipe </a>
+                    <a href="index.html#viloes" class="links"> Vilões </a>
+                    <a href="login.html" class="botaoLink"> Login </a>
+                </nav>
+            </section>
+        </header>
+
+        <main class="pagina-login">
+        <section class="form-cadastro">
+                <section class="redirecionar">
+                    <h2 class="titulo"> Já possui cadastro? </h2>
+                    <a href="login.html" class="botaoLink"> Entre </a>
+                </section>
+
+                <section class="login">
+                    <h2 class="titulo"> Cadastre-se </h1>
+                    
+                    <label for="nome"> Nome </label>
+                    <input type="text" name="nome" id="nome" placeholder="Digite seu Nome">
+
+                    <label for="email"> E-mail </label>
+                    <input type="email" name="email" id="email" placeholder="Digite seu E-mail">
+
+                    <label for="senha"> Senha </label>
+                    <input type="password" name="senha" id="senha" placeholder="Digite sua Senha">
+
+                    <label for="conf_senha"> Confirmar Senha </label>
+                    <input type="password" name="conf_senha" id="conf_senha" placeholder="Confirme sua Senha">
+
+                    <button class="botaoLink" id="botaoCadastrar"> Cadastrar </button>
+                </section>
+
+                <section class="modal">
+                    <section class="modal-conteudo">
+                        <button class="fechar" id="fechar">
+                            <img src="img/icones/fecharImg.png" alt="Icone de Fechar">
+                        </button>
+    
+                        <section id="respostas">
+                        </section>
+                    </section>
+                </section>
+        </section>
+        </main>
+
+        <footer>
+            <section class="container">
+                <p> &copy; Fernando - 2025 </p>
+            </section>
+        </footer>
+    </body>
+
+    <script src="js/modal.js"></script>
+    <script src="js/formCadastro.js"></script>
+</html>
