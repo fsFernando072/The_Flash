@@ -139,4 +139,40 @@ button {
     filter: invert(100%);
 }
 
+#foto_perfil {
+    width: 10rem;
+    height: 10rem;
+    object-fit: cover;
+    border-radius: 50%;
+    border: none;
+    position: relative;
+}
+
+.mudarImagem {
+    position: absolute;
+    width: 10rem;
+    height: 10rem;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+        width: 4rem;
+        height: 4rem;
+        filter: invert(100%);
+        display: none;
+    }
+}
+
+.mudarImagem:hover {
+    background-color: #000000bc;
+
+    img {
+        display: flex;
+    }
+}
 

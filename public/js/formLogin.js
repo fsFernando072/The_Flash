@@ -39,6 +39,7 @@ function verificar() {
                     sessionStorage.EMAIL_USUARIO = json.email;
                     sessionStorage.NOME_USUARIO = json.nome;
                     sessionStorage.ID_USUARIO = json.id;
+                    sessionStorage.CAMINHO_IMAGEM = json.caminhoImagem;
 
                     setTimeout(function () {
                         window.location = "./pages/home.html";

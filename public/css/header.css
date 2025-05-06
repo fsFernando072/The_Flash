@@ -80,18 +80,18 @@ header .container nav a.links:hover {
 .menu ul {
     list-style: none;
     position: absolute;
-    right: 0;
+    left: 0;
     top: 0;
     width: 20%;
     height: 100vh;
     padding-top: 6.25rem;
     background-color: var(--corCard);
-    margin-right: -20%;
+    margin-left: -20%;
     transition: all 0.2s ease-in-out;
 }
 
 .menu .check_hamburguer:checked ~ ul {
-    margin-right: 0;
+    margin-left: 0;
 }
 
 .menu ul li {
@@ -99,7 +99,15 @@ header .container nav a.links:hover {
 }
 
 .menu ul li a {
+    color: #ffffff;
+    text-decoration: none;
     font-size: 1.4rem;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+}
+
+.menu ul li a:hover {
+    color: var(--corBotao);
 }
 
 .botaoLink {
@@ -115,4 +123,12 @@ header .container nav a.links:hover {
     background-color: var(--corBotao);
     color: var(--corTexto2);
     border: 0.1rem solid var(--corBotao);
+}
+
+#imagem_usuario {
+    width: 3rem;
+    height: 3rem;
+    object-fit: cover;
+    border-radius: 50%;
+    border: none;
 }
