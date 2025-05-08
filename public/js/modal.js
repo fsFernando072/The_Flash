@@ -1,4 +1,4 @@
-const modal = document.querySelector('.modal');
+const modal = document.querySelector('#modal-resposta');
 const btnFechar = document.querySelector('#fechar');
 
 btnFechar.addEventListener('click', fechar)

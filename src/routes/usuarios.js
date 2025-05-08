@@ -12,4 +12,8 @@ router.post("/autenticar", function (req, res) {
     usuarioController.autenticar(req, res);
 });
 
+router.get("/imagens", function (req, res) {
+    usuarioController.pegarImagens(req, res);
+});
+
 module.exports = router;

@@ -52,35 +52,47 @@
         <main>
             <main class="pagina-login">
                 <section class="form-login">
-                     <section class="redirecionar">
+                    <section class="redirecionar">
                         <img src="../img/icones/usuarioPadraoImg.png" alt="Imagem do Usuário" id="foto_perfil">
-                        <section class="mudarImagem">
-                            <img src="../img/icones/lapisImg.png" alt="Icone de lápis" class="">
+                        <section class="mudarImagem" onclick="alterarImagem()">
+                            <img src="../img/icones/lapisImg.png" alt="Icone de lápis">
                         </section>
-                     </section>
+                    </section>
          
-                     <section class="login">
-                         <h2 class="titulo"> Perfil </h1>
+                    <section class="login">
+                        <h2 class="titulo"> Perfil </h1>
          
-                         <label for="email"> E-mail </label>
-                         <input type="email" name="email" id="email" placeholder="Digite seu E-mail">
+                        <label for="email"> E-mail </label>
+                        <input type="email" name="email" id="email" placeholder="Digite seu E-mail">
          
-                         <label for="senha"> Senha </label>
-                         <input type="password" name="senha" id="senha" placeholder="Digite sua Senha">
+                        <label for="senha"> Senha </label>
+                        <input type="password" name="senha" id="senha" placeholder="Digite sua Senha">
          
-                         <button class="botaoLink" id="botaoEntrar"> Entrar </button>
-                     </section>
+                        <button class="botaoLink" id="botaoEntrar"> Entrar </button>
+                    </section>
          
-                     <section class="modal">
-                         <section class="modal-conteudo">
-                             <button class="fechar" id="fechar">
-                                 <img src="img/icones/fecharImg.png" alt="Icone de Fechar">
-                             </button>
+                    <section class="modal" id="modal-resposta">
+                        <section class="modal-conteudo">
+                            <button class="fechar" id="fechar">
+                                <img src="../img/icones/fecharImg.png" alt="Icone de Fechar">
+                            </button>
          
-                             <section id="respostas">
-                             </section>
-                         </section>
-                     </section>
+                            <section id="respostas">
+                            </section>
+                        </section>
+                    </section>
+                     
+                    <section class="modal" id="modal-perfil">
+                        <section class="modal-conteudo">
+                            <button class="fechar" id="fechar-modal-perfil">
+                                <img src="../img/icones/fecharImg.png" alt="Icone de Fechar">
+                            </button>
+
+                            <section id="imagens">
+
+                            </section>
+                        </section>
+                    </section>
                 </section>
              </main>
         </main>
