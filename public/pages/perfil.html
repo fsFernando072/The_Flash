@@ -12,7 +12,7 @@
         <link rel="shortcut icon" href="../img/logo/logoCurta.png" type="image/x-icon">
         <script src="../js/sessao.js"></script>
     </head>
-    <body onload="carregarPerfil()">
+    <body onload="validarSessao(), carregarPerfil()">
         <header>
             <section class="container">
                 <nav class="menu">
@@ -61,14 +61,17 @@
          
                     <section class="login">
                         <h2 class="titulo"> Perfil </h1>
+
+                        <label for="nome"> Nome </label>
+                        <input type="text" name="nome" id="nome" placeholder="Digite seu nome">
          
                         <label for="email"> E-mail </label>
                         <input type="email" name="email" id="email" placeholder="Digite seu E-mail">
          
                         <label for="senha"> Senha </label>
-                        <input type="password" name="senha" id="senha" placeholder="Digite sua Senha">
+                        <input type="password" name="senha" id="senha" placeholder="Digite sua nova Senha">
          
-                        <button class="botaoLink" id="botaoEntrar"> Entrar </button>
+                        <button class="botaoLink" id="botaoEditar"> Editar </button>
                     </section>
          
                     <section class="modal" id="modal-resposta">
@@ -104,5 +107,6 @@
         </footer>
     </body>
 
+    <script src="../js/modal.js"></script>
     <script src="../js/formPerfil.js"></script>
 </html>

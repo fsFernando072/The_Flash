@@ -40,6 +40,7 @@ function verificar() {
                     sessionStorage.NOME_USUARIO = json.nome;
                     sessionStorage.ID_USUARIO = json.id;
                     sessionStorage.CAMINHO_IMAGEM = json.caminhoImagem;
+                    sessionStorage.SENHA = json.senha;
 
                     setTimeout(function () {
                         window.location = "./pages/home.html";

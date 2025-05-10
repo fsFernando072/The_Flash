@@ -23,7 +23,8 @@ function autenticar(req, res) {
                             id: resultadoAutenticar[0].id,
                             email: resultadoAutenticar[0].email,
                             nome: resultadoAutenticar[0].nome,
-                            caminhoImagem: resultadoAutenticar[0].caminhoImagem
+                            caminhoImagem: resultadoAutenticar[0].caminhoImagem,
+                            senha: resultadoAutenticar[0].senha
                         });
                     } else if (resultadoAutenticar.length == 0) {
                         res.status(403).send("Email e/ou senha inválido(s)");
@@ -93,8 +94,32 @@ function pegarImagens(req, res) {
         });
 }
 
+function atualizarPerfil(req, res) {
+    let id = req.body.id;
+    let nome = req.body.nome;
+    let email = req.body.email;
+    let senha = req.body.senha;
+    let caminhoImagem = req.body.caminhoImagem;
+
+    usuarioModel.atualizarPerfil(id, nome, email, senha, caminhoImagem)
+        .then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        )
+        .catch(
+            function (erro) {
+                console.log(erro);
+                console.log("Houve um erro ao realizar o update: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+
+}
+
 module.exports = {
     autenticar,
     cadastrar,
-    pegarImagens
+    pegarImagens,
+    atualizarPerfil
 }

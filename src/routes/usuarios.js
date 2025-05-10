@@ -16,4 +16,8 @@ router.get("/imagens", function (req, res) {
     usuarioController.pegarImagens(req, res);
 });
 
+router.put("/editar", function (req, res) {
+    usuarioController.atualizarPerfil(req, res);
+});
+
 module.exports = router;
