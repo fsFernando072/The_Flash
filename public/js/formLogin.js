@@ -10,7 +10,7 @@ function verificar() {
     let erros = ``;
 
     if (email == '' || senha == '') {
-        erros += `<p>  <img src="img/icones/erroImg.png" alt="Icone de erro" class="iconesPeq"> O email e/ou senha não podem ser vazios </p>`;
+        erros += `<p>  <img src="img/icones/erroImg.png" alt="Icone de erro" class="iconesPeq"> O e-mail e/ou senha não podem ser vazios </p>`;
     }
 
     if (erros != '') {

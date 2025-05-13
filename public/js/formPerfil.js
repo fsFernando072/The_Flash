@@ -128,7 +128,7 @@ function editarPerfil() {
     
                 respostaModal.innerHTML = '<img src="../img/icones/certoImg.png" alt="Icone de certo" class="iconesGra">';
                 respostaModal.innerHTML +=
-                    "<p> Alteração do perfil realizado com sucesso! Recarregando a página </p>";
+                    "<p> Alteração do perfil realizada com sucesso! Recarregando a página </p>";
 
                 sessionStorage.EMAIL_USUARIO = email;
                 sessionStorage.NOME_USUARIO = nome;
@@ -147,4 +147,15 @@ function editarPerfil() {
             console.log(`#ERRO: ${resposta}`);
         });
     }
+}
+
+let novaSenha = document.querySelector('#senha');
+novaSenha.style.display = 'none';
+
+let labelNovaSenha = document.querySelector('.label-nova-senha');
+
+labelNovaSenha.addEventListener('click', exibirInput);
+
+function exibirInput() {
+    novaSenha.style.display = 'flex';
 }
