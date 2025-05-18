@@ -4,16 +4,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Quiz - The Flash </title>
+    <title> Responder Quiz - The Flash </title>
     <link rel="stylesheet" href="../css/body.css">
     <link rel="stylesheet" href="../css/header.css">
     <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/form.css">
     <link rel="shortcut icon" href="../img/logo/logoCurta.png" type="image/x-icon">
     <script src="../js/sessao.js"></script>
 </head>
 
-<body onload="validarSessao(), exibirQuiz()">
+<body onload="validarSessao(), exibirRespostas()">
     <header>
         <section class="container">
             <nav class="menu">
@@ -62,36 +63,36 @@
         </section>
     </header>
 
-    <main class="pagina-quiz">
-        <section id="quizzes" class="container">
-            <h1 class="titulo"> Quizzes </h1>
+    <main class="quiz">
+        <section class="container">
+            <section class="carrossel">
 
-            <section class="secao_pesquisa">
-                <input type="search" name="pesquisar" id="pesquisar" placeholder="Pesquise o nome do quiz">
-                <button onclick="pesquisarQuiz()">
-                    <img src="../img/icones/lupaImg.png" alt="Icone de Lupa">
+                
+            </section>
+
+        </section>
+
+        <section class="modal" id="modal-resposta">
+            <section class="modal-conteudo">
+                <button class="fechar" id="fechar">
+                    <img src="../img/icones/fecharImg.png" alt="Icone de Fechar">
                 </button>
+
+                <section id="respostas">
+                </section>
             </section>
         </section>
 
-        <section class="container" id="publicos">
-            <h1 class="titulo"> Quizzes Públicos </h1>
-            <section class="cards"></section>
-        </section>
+        <section class="modal" id="modal-quiz">
+            <section class="modal-conteudo">
+                <button class="fechar" id="fechar-modal-quiz">
+                    <img src="../img/icones/fecharImg.png" alt="Icone de Fechar">
+                </button>
 
-        <section class="container" id="privados">
-            <h1 class="titulo"> Quizzes Privados </h1>
-            <section class="cards"></section>
-        </section>
+                <section id="imagens">
 
-        <section class="container" id="meus_quizzes">
-            <h1 class="titulo">
-                Meus Quizzes
-                <a href="add_quiz.html" class="adicionar">
-                    <img src="../img/icones/maisImg.png" alt="Icone de adicionar">
-                </a>
-            </h1>
-            <section class="cards"></section>
+                </section>
+            </section>
         </section>
     </main>
 
@@ -101,7 +102,7 @@
         </section>
     </footer>
 </body>
-
+<script src="../js/modal.js"></script>
 <script src="../js/quiz.js"></script>
 
 </html>

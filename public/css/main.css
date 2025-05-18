@@ -230,3 +230,26 @@ main .card h2 {
     width: 2rem;
     height: 2rem;
 }
+
+.pagina-quiz .card img {
+    width: 16rem;
+    height: 12rem;
+}
+
+.pagina-quiz .cards {
+    grid-template-columns: repeat(4, 1fr);
+    padding: 1rem 0;
+}
+
+.pagina-quiz .card h2 {
+    padding: 1rem;
+}
+
+.usuario {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    gap: 1rem;
+    border-top: 0.1rem solid var(--corTexto);
+    margin-top: 0.5rem;
+}

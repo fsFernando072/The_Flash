@@ -19,4 +19,16 @@ router.post("/perguntas", function (req, res) {
     quizController.cadastrarPergunta(req, res);
 })
 
+router.post("/listarPerguntas", function (req, res) {
+    quizController.listarPerguntas(req, res);
+})
+
+router.post("/listarRespostas", function (req, res) {
+    quizController.listarRespostas(req, res);
+})
+
+router.post("/cadastrarResposta", function (req, res) {
+    quizController.cadastrarResposta(req, res);
+})
+
 module.exports = router;
