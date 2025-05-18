@@ -27,6 +27,7 @@ CREATE TABLE quiz (
     id INT PRIMARY KEY AUTO_INCREMENT,
     titulo VARCHAR(60) NOT NULL,
     descricao VARCHAR(200) NOT NULL,
+    senha VARCHAR(60),
     caminhoImagem VARCHAR(80) NOT NULL,
     fkusuario INT NOT NULL,
     FOREIGN KEY (fkusuario) REFERENCES usuario (id)

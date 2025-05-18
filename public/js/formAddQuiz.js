@@ -108,13 +108,13 @@ function validar(num) {
                 alternativaC: altC,
                 alternativaD: altD,
                 alternativaE: altE,
-                alternativaCorreta: altCorreta 
+                alternativaCorreta: altCorreta
             }
 
             console.log(perguntas[num - 2]);
 
 
-            if (num < 5) {
+            if (num < 6) {
                 avancar(num);
             } else {
                 finalizar();
@@ -123,12 +123,16 @@ function validar(num) {
     }
 }
 
-function finalizar() {
+async function finalizar() {
+    cadastrarQuiz();
+}
+
+async function cadastrarQuiz() {
     let titulo = document.querySelector('#titulo').value;
     let descricao = document.querySelector('#descricao').value;
     let tipo = document.querySelector('#tipo').value;
     let senha = document.querySelector('#senha').value;
-    let caminhoImagem = document.querySelector('#foto_quiz');
+    let caminhoImagem = document.querySelector('#foto_quiz').src;
     caminhoImagem = caminhoImagem.replace('http://localhost:3333/img/', '');
 
     let id = sessionStorage.ID_USUARIO;
@@ -138,99 +142,104 @@ function finalizar() {
     }
 
     fetch(`/quiz/cadastrar`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                titulo: titulo,
-                descricao: descricao,
-                senha: senha,
-                caminhoImagem,
-                id: id
-            })
-        }).then(function (resposta) {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            titulo: titulo,
+            descricao: descricao,
+            senha: senha,
+            caminhoImagem,
+            id: id
+        })
+    }).then(function (resposta) {
 
-            if (resposta.ok) {
-                
+        if (resposta.ok) {
+            listarQuiz();
+        } else if (resposta.status == 404) {
+            window.alert("Deu 404!");
+        } else {
+            throw ("Houve um erro ao tentar cadastrar o quiz! Código da resposta: " + resposta.status);
+        }
+    }).catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+    });
+}
 
-                
+async function listarQuiz() {
+    let idUsu = sessionStorage.ID_USUARIO;
+
+    fetch(`/quiz/listarUltimo`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            id: idUsu
+        })
+    }).then(function (resposta) {
+        if (resposta.ok) {
+            console.log(resposta);
+
+            resposta.json().then(json => {
+                console.log(json);
+                console.log(JSON.stringify(json));
+    
+                for (let i = 1; i <= 5; i++) {
+                    cadastrarPergunta(i, json[0].id);
+                }
+
                 modal.style.display = 'flex';
     
                 respostaModal.innerHTML = '<img src="../img/icones/certoImg.png" alt="Icone de certo" class="iconesGra">';
                 respostaModal.innerHTML +=
-                    "<p> Quiz criado com sucesso! Recarregando a página </p>";
-
+                    "<p> Quiz criado com sucesso! Redirecionando para a página de quizzes </p>";
+            
                 setTimeout(() => {
                     window.location = "quiz.html";
                 }, "3000");
-            } else if (resposta.status == 404) {
-                window.alert("Deu 404!");
-            } else {
-                throw ("Houve um erro ao tentar cadastrar o quiz! Código da resposta: " + resposta.status);
-            }
-        }).catch(function (resposta) {
-            console.log(`#ERRO: ${resposta}`);
-        });
+            });
+        } if (resposta.status == 404) {
+            window.alert("Deu 404!");
+        } else {
+            throw ("Houve um erro ao tentar listar o quiz! Código da resposta: " + resposta.status);
+        }
+    }).catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+    });
 }
 
-function listarQuiz() {
-    let idUsu = sessionStorage.ID_USUARIO;
+async function cadastrarPergunta(num, idquiz) {
+    console.log(idquiz);
 
-    fetch(`/quiz/listarUltimo`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                id: idUsu
-            })
-        }).then(function (resposta) {
-            if (resposta.ok) {
-                console.log(resposta);
-
-                resposta.json().then(json => {
-                    console.log(json);
-                    console.log(JSON.stringify(json));
-                    return json.id;
-                });
-            } if (resposta.status == 404) {
-                window.alert("Deu 404!");
-            } else {
-                throw ("Houve um erro ao tentar listar o quiz! Código da resposta: " + resposta.status);
-            }
-        }).catch(function (resposta) {
-            console.log(`#ERRO: ${resposta}`);
-        });
-}
-
-function cadastrarPergunta(num, idquiz) {
     fetch(`/quiz/perguntas`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                numero: num,
-                pergunta: perguntas[num - 1].pergunta,
-                alternativaA: perguntas[num - 1].alternativaA,
-                alternativaB: perguntas[num - 1].alternativaB,
-                alternativaC: perguntas[num - 1].alternativaC,
-                alternativaD: perguntas[num - 1].alternativaD,
-                alternativaE: perguntas[num - 1].alternativaE,
-                alternativaCorreta: perguntas[num - 1].alternativaCorreta,
-                id: idquiz
-            })
-        }).then(function (resposta) {
-
-            if (resposta.status == 404) {
-                window.alert("Deu 404!");
-            } else {
-                throw ("Houve um erro ao tentar cadastrar o quiz! Código da resposta: " + resposta.status);
-            }
-        }).catch(function (resposta) {
-            console.log(`#ERRO: ${resposta}`);
-        });
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            numero: num,
+            pergunta: perguntas[num - 1].pergunta,
+            alternativaA: perguntas[num - 1].alternativaA,
+            alternativaB: perguntas[num - 1].alternativaB,
+            alternativaC: perguntas[num - 1].alternativaC,
+            alternativaD: perguntas[num - 1].alternativaD,
+            alternativaE: perguntas[num - 1].alternativaE,
+            alternativaCorreta: perguntas[num - 1].alternativaCorreta,
+            id: idquiz
+        })
+    }).then(function (resposta) {
+        if (resposta.ok) {
+            return 'ok';
+        } else if (resposta.status == 404) {
+            window.alert("Deu 404!");
+        } else {
+            throw ("Houve um erro ao tentar cadastrar o quiz! Código da resposta: " + resposta.status);
+        }
+    }).catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+    });
 }
 
 function avancar(num) {
@@ -277,7 +286,7 @@ function exibirPerguntas() {
         if (i < 5) {
             conteudo += `<button onclick="validar(${i + 1}), subir()" class="botaoLink"> Avançar </button>`;
         } else {
-            conteudo += `<button onclick="finalizar()" class="botaoLink"> Finalizar </button>`;
+            conteudo += `<button onclick="validar(${i + 1}), subir()" class="botaoLink"> Finalizar </button>`;
         }
 
         conteudo += `</section></section>`;
