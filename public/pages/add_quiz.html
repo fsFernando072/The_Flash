@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Perfil - The Flash </title>
+    <title> Adicionar Quiz - The Flash </title>
     <link rel="stylesheet" href="../css/body.css">
     <link rel="stylesheet" href="../css/header.css">
     <link rel="stylesheet" href="../css/main.css">
@@ -14,7 +14,7 @@
     <script src="../js/sessao.js"></script>
 </head>
 
-<body onload="validarSessao(), carregarPerfil()">
+<body onload="validarSessao(), exibirPerguntas()">
     <header>
         <section class="container">
             <nav class="menu">
@@ -63,59 +63,63 @@
         </section>
     </header>
 
-    <main class="pagina-login">
-        <section class="form-login">
-            <section class="redirecionar">
-                <img src="../img/icones/usuarioPadraoImg.png" alt="Imagem do Usuário" id="foto_perfil">
-                <section class="mudarImagem" onclick="alterarImagem()">
-                    <img src="../img/icones/lapisImg.png" alt="Icone de lápis">
-                </section>
-            </section>
+    <main class="quiz">
+        <section class="container">
+            <section class="carrossel">
 
-            <section class="login">
-                <h2 class="titulo"> Perfil </h2>
+                <section class="addquiz">
+                    <h1 class="titulo"> Adicionar Quiz </h1>
 
-                <label for="nome">
-                    <img src="../img/icones/userImg.png" alt="Icone de Usuário" class="iconesPeq iconesPerfil">
-                    Nome
-                </label>
-                <input type="text" name="nome" id="nome" placeholder="Digite seu nome">
+                    <label> Alterar Imagem </label>
+                    <section class="img-quiz">
+                        <img src="../img/fundo/hall.jpeg" alt="Imagem do quiz" id="foto_quiz">
+                        <section class="mudarImagemQuiz" onclick="alterarImagem()">
+                            <img src="../img/icones/lapisImg.png" alt="Icone de lápis">
+                        </section>
+                    </section>
 
-                <label for="email">
-                    <img src="../img/icones/emailImg.png" alt="Icone de E-mail" class="iconesPeq iconesPerfil">
-                    E-mail
-                </label>
-                <input type="email" name="email" id="email" placeholder="Digite seu E-mail">
+                    <label for="titulo"> Titulo </label>
+                    <input type="text" name="titulo" id="titulo" placeholder="Digite o titulo do quiz">
 
-                <label for="senha" class="label-nova-senha">
-                    <img src="../img/icones/senhaImg.png" alt="Icone de Senha" class="iconesPeq iconesPerfil">
-                    Alterar Senha
-                </label>
-                <input type="password" name="senha" id="senha" placeholder="Digite sua nova Senha">
+                    <label for="descricao"> Descrição </label>
+                    <input type="text" name="descricao" id="descricao" placeholder="Digite a descricao do quiz">
 
-                <button class="botaoLink" id="botaoEditar"> Editar </button>
-            </section>
+                    <label for="tipo"> Selecione o tipo de quiz </label>
+                    <select name="tipo" id="tipo" onchange="exibirSenha()">
+                        <option value="publico"> Público </option>
+                        <option value="privado"> Privado </option>
+                    </select>
 
-            <section class="modal" id="modal-resposta">
-                <section class="modal-conteudo">
-                    <button class="fechar" id="fechar">
-                        <img src="../img/icones/fecharImg.png" alt="Icone de Fechar">
-                    </button>
+                    <label for="senha" id="label-senha"> Senha </label>
+                    <input type="password" name="senha" id="senha" placeholder="Digite a senha do quiz">
 
-                    <section id="respostas">
+                    <section class="botoes">
+                        <button onclick="validar(1), subir()" class="botaoLink"> Avançar </button>
                     </section>
                 </section>
             </section>
 
-            <section class="modal" id="modal-perfil">
-                <section class="modal-conteudo">
-                    <button class="fechar" id="fechar-modal-perfil">
-                        <img src="../img/icones/fecharImg.png" alt="Icone de Fechar">
-                    </button>
+        </section>
 
-                    <section id="imagens">
+        <section class="modal" id="modal-resposta">
+            <section class="modal-conteudo">
+                <button class="fechar" id="fechar">
+                    <img src="../img/icones/fecharImg.png" alt="Icone de Fechar">
+                </button>
 
-                    </section>
+                <section id="respostas">
+                </section>
+            </section>
+        </section>
+
+        <section class="modal" id="modal-quiz">
+            <section class="modal-conteudo">
+                <button class="fechar" id="fechar-modal-quiz">
+                    <img src="../img/icones/fecharImg.png" alt="Icone de Fechar">
+                </button>
+
+                <section id="imagens">
+
                 </section>
             </section>
         </section>
@@ -127,8 +131,7 @@
         </section>
     </footer>
 </body>
-
 <script src="../js/modal.js"></script>
-<script src="../js/formPerfil.js"></script>
+<script src="../js/formAddQuiz.js"></script>
 
 </html>

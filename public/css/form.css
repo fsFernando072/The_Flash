@@ -75,7 +75,8 @@ button {
 }
 
 .modal {
-    position: fixed;
+    overflow: auto;
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
@@ -219,10 +220,161 @@ button {
     }
 
     img.selecionado {
+        border: 0.2rem var(--corBotao) solid;
+    }
+}
+
+#modal-quiz .modal-conteudo {
+    position: relative;
+    width: 80%;
+    min-height: 70%;
+    display: flex;
+    background-color: var(--corCard);
+    border-radius: 2rem;
+    padding: 3rem 2.5rem;
+}
+
+#modal-quiz .modal-conteudo #imagens {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 3rem;
+
+    img {
+        width: 10rem;
+        height: 8rem;
+        object-fit: cover;
+        transition: all ease-in-out 0.2s;
+        cursor: pointer;
+    }
+
+    img:hover {
+        filter: opacity(50%);
+    }
+
+    img.selecionado {
         border: 0.4rem var(--corBotao) solid;
     }
 }
 
 .label-nova-senha {
     cursor: pointer;
+}
+
+.addquiz {
+    width: 80vw;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem 0;
+}
+
+.addquiz input {
+    background-color: var(--corCard);
+    padding: 1rem;
+    border-bottom: 0.2rem solid var(--corBotao);
+    outline: none;
+}
+
+.addquiz select {
+    background-color: var(--corCard);
+    padding: 1rem;
+    width: 60%;
+    border-bottom: 0.2rem solid var(--corBotao);
+    color: var(--corTexto);
+    outline: none;
+    cursor: pointer;
+    margin-bottom: 1rem;
+}
+
+.addquiz #descricao {
+    width: 90%;
+}
+
+.addquiz label {
+    margin-top: 1rem;
+    padding-bottom: 0.5rem;
+    font-size: 1.5rem;
+}
+
+.quiz {
+    display: flex;
+}
+
+.quiz .container {
+    overflow: hidden;
+}
+
+.addquiz .botoes {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.carrossel {
+    display: flex;
+    width: 600%;
+    transition: all 0.5s ease-in-out;
+}
+
+#foto_quiz {
+    width: 16rem;
+    height: 12rem;
+    object-fit: cover;
+    border: none;
+    position: relative;
+}
+
+.img-quiz {
+    display: flex;
+}
+
+.mudarImagemQuiz {
+    position: absolute;
+    width: 16rem;
+    height: 12rem;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+        width: 4rem;
+        height: 4rem;
+        filter: invert(100%);
+        display: none;
+    }
+}
+
+.mudarImagemQuiz:hover {
+    background-color: #000000bc;
+
+    img {
+        display: flex;
+    }
+}
+
+input[type="radio"] {
+    appearance: none;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 50%;
+    border: 0.2rem solid var(--corTexto2);
+    transition: 0.2s all linear;
+    margin: 0;
+    padding: 0;
+}
+
+input[type="radio"]:checked {
+    border: .4rem solid var(--corCerta);
+}
+
+.alternativa {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
 }

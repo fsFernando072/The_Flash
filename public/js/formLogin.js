@@ -43,7 +43,7 @@ function verificar() {
                     sessionStorage.SENHA = json.senha;
 
                     setTimeout(function () {
-                        window.location = "./pages/home.html";
+                        window.location = "./pages/painel.html";
                     }, 1000);
 
                 });

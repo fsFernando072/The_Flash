@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Quiz - The Flash </title>
+    <link rel="stylesheet" href="../css/body.css">
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="shortcut icon" href="../img/logo/logoCurta.png" type="image/x-icon">
+    <script src="../js/sessao.js"></script>
+</head>
+
+<body onload="validarSessao()">
+    <header>
+        <section class="container">
+            <nav class="menu">
+                <input type="checkbox" name="chk_hamburguer" id="chk_hamburguer" class="check_hamburguer">
+
+                <section class="hamburguer">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </section>
+                <ul>
+                    <li>
+                        <a href="painel.html">
+                            <img src="../img/icones/painelImg.png" alt="Icone de painel">
+                            Painel
+                        </a>
+                    </li>
+                    <li>
+                        <a href="quiz.html">
+                            <img src="../img/icones/quizImg.png" alt="Icone de quiz">
+                            Quiz
+                        </a>
+                    </li>
+                    <li>
+                        <a href="personagens.html">
+                            <img src="../img/icones/userImg.png" alt="Icone de personagem">
+                            Personagens
+                        </a>
+                    </li>
+                    <li>
+                        <a onclick="limparSessao()">
+                            <img src="../img/icones/sairImg.png" alt="">
+                            Sair
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <a href="home.html">
+                <img src="../img/logo/logoExtensa.png" alt="Logo de The Flash" class="logo">
+            </a>
+
+            <a href="perfil.html">
+                <img src="../img/icones/usuarioPadraoImg.png" alt="Imagem do Usuário" id="imagem_usuario">
+            </a>
+        </section>
+    </header>
+
+    <main>
+        <section id="quizzes" class="container">
+            <h1 class="titulo"> Quizzes </h1>
+
+            <section class="secao_pesquisa">
+                <input type="search" name="pesquisar" id="pesquisar" placeholder="Pesquise o nome do quiz">
+                <button onclick="pesquisarQuiz()">
+                    <img src="../img/icones/lupaImg.png" alt="Icone de Lupa">
+                </button>
+            </section>
+        </section>
+
+        <section class="container">
+            <h1 class="titulo"> Quizzes Públicos </h1>
+
+
+        </section>
+
+        <section class="container">
+            <h1 class="titulo"> Quizzes Privados </h1>
+
+
+        </section>
+
+        <section class="container" id="meus_quizzes">
+            <h1 class="titulo">
+                Meus Quizzes
+                <a href="add_quiz.html" class="adicionar">
+                    <img src="../img/icones/maisImg.png" alt="Icone de adicionar">
+                </a>
+            </h1>
+
+
+        </section>
+    </main>
+
+    <footer>
+        <section class="container">
+            <p> &copy; Fernando - 2025 </p>
+        </section>
+    </footer>
+</body>
+
+</html>
