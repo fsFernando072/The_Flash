@@ -1,6 +1,8 @@
 const carrossel = document.querySelector('.carrossel');
 const respostaModal = document.querySelector('#respostas');
 
+let quizzes = [];
+
 function exibirQuiz() {
     let publico = document.querySelector('#publicos .cards');
     let privado = document.querySelector('#privados .cards');
@@ -9,7 +11,11 @@ function exibirQuiz() {
 
     let temPublico = false;
     let temPrivado = false;
-    let temMeusQuizes = false;
+    let temMeusQuizzes = false;
+
+    let fraseMeusQuizzes = '';
+    let frasePublico = '';
+    let frasePrivado = '';
 
     fetch("/quiz/listar")
         .then(function (resposta) {
@@ -20,17 +26,19 @@ function exibirQuiz() {
                     console.log("Dados recebidos: ", JSON.stringify(resposta));
 
                     for (let i = 0; i < resposta.length; i++) {
+                        quizzes[i] = resposta[i];
+
                         if (id == resposta[i].fkusuario) {
-                            temMeusQuizes = true;
-                            meusQuizzes.innerHTML += `<article class="card" onclick="fazerQuiz(${resposta[i].id})">
+                            temMeusQuizzes = true;
+                            fraseMeusQuizzes += `<article class="card" onclick="fazerQuiz(${i})">
                                 <img src="../img/${resposta[i].imgQuiz}" alt="Imagem do quiz">
                                 <h2> ${resposta[i].titulo} </h2>
                                 <p> ${resposta[i].descricao} </p>
                                 <p class="usuario"> <img src="../img/${resposta[i].imgUsu}" alt="Imagem do Usuário" id="imagem_usuario"> ${resposta[i].nome} </p>
                             </article>`;
-                        } else if (resposta[i].senha == NULL) {
+                        } else if (resposta[i].senha == '') {
                             temPublico = true;
-                            publico.innerHTML += `<article class="card" onclick="fazerQuiz(${resposta[i].id})">
+                            frasePublico += `<article class="card" onclick="fazerQuiz(${i})">
                                 <img src="../img/${resposta[i].imgQuiz}" alt="Imagem do quiz">
                                 <h2> ${resposta[i].titulo} </h2>
                                 <p> ${resposta[i].descricao} </p>
@@ -38,7 +46,7 @@ function exibirQuiz() {
                             </article>`;
                         } else {
                             temPrivado = true;
-                            privado.innerHTML += `<article class="card" onclick="fazerQuiz(${resposta[i].id})">
+                            frasePrivado += `<article class="card" onclick="fazerQuiz(${i})">
                                 <img src="../img/${resposta[i].imgQuiz}" alt="Imagem do quiz">
                                 <h2> ${resposta[i].titulo} </h2>
                                 <p> ${resposta[i].descricao} </p>
@@ -47,16 +55,20 @@ function exibirQuiz() {
                         }
 
                         if (!temPublico) {
-                            publico.innerHTML = '<p> Não há nenhum quiz público </p>';
+                            frasePublico = '<p> Não há nenhum quiz público </p>';
                         }
 
                         if (!temPrivado) {
-                            privado.innerHTML = '<p> Não há nenhum quiz privado </p>';
+                            frasePrivado = '<p> Não há nenhum quiz privado </p>';
                         }
 
-                        if (!temMeusQuizes) {
-                            meusQuizzes.innerHTML = '<p> Você não possui nenhum quiz </p>';
+                        if (!temMeusQuizzes) {
+                            fraseMeusQuizzes = '<p> Você não possui nenhum quiz </p>';
                         }
+
+                        meusQuizzes.innerHTML = fraseMeusQuizzes;
+                        privado.innerHTML = frasePrivado;
+                        publico.innerHTML = frasePublico
                     }
                 });
             } else {
@@ -68,13 +80,26 @@ function exibirQuiz() {
         });
 }
 
-function fazerQuiz(idQuiz) {
-    sessionStorage.ID_QUIZ = idQuiz;
+function fazerQuiz(quiz) {
+    sessionStorage.ID_QUIZ = quizzes[quiz].id;
+    sessionStorage.TITULO_QUIZ = quizzes[quiz].titulo;
+    sessionStorage.DESCRICAO_QUIZ = quizzes[quiz].descricao;
+    sessionStorage.IMG_QUIZ = quizzes[quiz].imgQuiz;
+    sessionStorage.NOME_CRIADOR = quizzes[quiz].nome;
+    sessionStorage.IMG_CRIADOR = quizzes[quiz].imgUsu;
+    sessionStorage.SENHA_QUIZ = quizzes[quiz].senhaQuiz;
+
     window.location = "responder_quiz.html";
 }
 
 function exibirPerguntas() {
-    let id_quiz = sessionStorage.ID_QUIZ;
+    let idQuiz = sessionStorage.ID_QUIZ;
+    let titulo = sessionStorage.TITULO_QUIZ;
+    let descricao = sessionStorage.DESCRICAO_QUIZ;
+    let imgQuiz = sessionStorage.IMG_QUIZ;
+    let nome = sessionStorage.NOME_CRIADOR;
+    let imgUsu = sessionStorage.IMG_CRIADOR;
+    let senha = sessionStorage.SENHA_QUIZ;
 
     fetch("/quiz/listarPerguntas", {
         method: "POST",
@@ -82,25 +107,42 @@ function exibirPerguntas() {
             "Content-Type": "application/json"
         },
         body: JSON.stringify({
-            id: id_quiz
+            id: idQuiz
         })
     })
         .then(function (resposta) {
             if (resposta.ok) {
                 resposta.json().then(function (resposta) {
-                    console.log(resposta);
                     let conteudo = '';
 
                     for (let i = 0; i < 6; i++) {
                         if (i == 0) {
                             conteudo += `<section class="addquiz">`;
-                            conteudo += `<h1 class="titulo"> Iniciar Quiz </h1>`;
+                            conteudo += `<img src="../img/${imgQuiz}" alt="Imagem do quiz" id="foto_quiz">`;
 
-                            conteudo += `<section class="botoes">`;
+                            conteudo += `<h1 class="titulo"> ${titulo} </h1>`;
 
-                            conteudo += `<button onclick="avancar(${i + 1}), subir()" class="botaoLink"> Iniciar </button>`;
+                            conteudo += `<p> ${descricao} </p>`;
 
-                            conteudo += `</section></section>`;
+                            conteudo += `<p class="usuario"> Feito por: <img src="../img/${imgUsu}" alt="Imagem do Usuário" id="imagem_usuario"> ${nome} </p>`;
+
+                            if (senha == '') {
+                                conteudo += `<section class="botoes">`;
+
+                                conteudo += `<button onclick="avancar(${i + 1}), subir()" class="botaoLink"> Iniciar </button>`;
+
+                                conteudo += `</section></section>`;
+                            } else {
+                                conteudo += ` <label for="senha" id="label-senha"> Senha </label>`
+                                conteudo += `<input type="password" name="senha" id="senha" placeholder="Digite a senha do quiz">`;
+
+                                conteudo += `<section class="botoes">`;
+
+                                conteudo += `<button onclick="validarSenha(), subir()" class="botaoLink"> Iniciar </button>`;
+
+                                conteudo += `</section></section>`;
+                            }
+
 
                         } else {
                             conteudo += `<section class="addquiz">`;
@@ -133,7 +175,7 @@ function exibirPerguntas() {
 
                     carrossel.innerHTML += conteudo;
                 });
-            } if (resposta.status == 404) {
+            } else if (resposta.status == 404) {
                 window.alert("Deu 404!");
             } else {
                 throw ("Houve um erro ao tentar listar as perguntas! Código da resposta: " + resposta.status);
@@ -144,8 +186,21 @@ function exibirPerguntas() {
         });
 }
 
+function validarSenha() {
+    let senha = document.querySelector('#senha').value;
+
+    if (senha == sessionStorage.SENHA_QUIZ) {
+        avancar(1);
+    } else {
+        modal.style.display = 'flex';
+        respostaModal.innerHTML = '<img src="../img/icones/erroImg.png" alt="Icone de erro" class="iconesGra">';
+        respostaModal.innerHTML += '<p> <img src="../img/icones/erroImg.png" alt="Icone de erro" class="iconesPeq"> A senha está incorreta </p>';
+    }
+}
+
 function exibirRespostas() {
     let id_quiz = sessionStorage.ID_QUIZ;
+
     let id_usuario = sessionStorage.ID_USUARIO;
     let respondeu = false;
 
@@ -160,22 +215,23 @@ function exibirRespostas() {
     })
         .then(function (resposta) {
             if (resposta.ok) {
-
-                resposta.json().then(function (resposta) {
-                    for (let i = 0; i < resposta.length; i++) {
-                        if (resposta[i].fkusuario == id_usuario) {
-                            respondeu = true;
+                if (resposta.statusText == 'No Content') {
+                    exibirPerguntas()
+                } else {
+                    resposta.json().then(function (resposta) {
+                        for (let i = 0; i < resposta.length; i++) {
+                            if (resposta[i].fkusuario == id_usuario) {
+                                respondeu = true;
+                            }
                         }
-                    }
-
-                    if (!respondeu) {
-                        exibirPerguntas()
-                    }
-                });
-            } if (resposta.status == 404) {
+    
+                        if (!respondeu) {
+                            exibirPerguntas()
+                        }
+                    });
+                }
+            } else if (resposta.status == 404) {
                 window.alert("Deu 404!");
-            } else if (resposta.status == 204) {
-                exibirPerguntas();
             } else {
                 throw ("Houve um erro ao tentar listar as respostas! Código da resposta: " + resposta.status);
             }
