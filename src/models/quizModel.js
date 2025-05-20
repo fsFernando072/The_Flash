@@ -31,21 +31,21 @@ function listar() {
     return database.executar(instrucaoSql);
 }
 
-function listarPerguntas(idQuiz) {
-    console.log("ACESSEI O QUIZ MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listarPerguntas(): ", idQuiz);
+function listarSelecionado(id) {
+    console.log("ACESSEI O QUIZ MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listarSelecionado(): ", id);
 
     var instrucaoSql = `
-        SELECT * FROM pergunta WHERE fkquiz = ${idQuiz};
-    `;
-    console.log("Executando a instrução SQL: \n" + instrucaoSql);
-    return database.executar(instrucaoSql);
-}
-
-function listarRespostas(idQuiz) {
-    console.log("ACESSEI O QUIZ MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listarRespostas(): ", idQuiz);
-
-    var instrucaoSql = `
-        SELECT * FROM resposta WHERE fkquiz = ${idQuiz};
+        SELECT qui.titulo,
+            qui.id,
+             qui.descricao,
+             qui.senha senhaQuiz,
+             qui.caminhoImagem imgQuiz,
+             usu.nome,
+             usu.caminhoImagem imgUsu,
+             qui.fkusuario
+             FROM quiz qui
+        INNER JOIN usuario usu ON usu.id = qui.fkusuario
+        WHERE qui.id = ${id};
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
@@ -61,34 +61,9 @@ function listarUltimo(id) {
     return database.executar(instrucaoSql);
 }
 
-function cadastrarPergunta(numero, pergunta, alternativaA, alternativaB, alternativaC, alternativaD, alternativaE, alternativaCorreta, id) {
-    console.log("ACESSEI O QUIZ MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():", numero, pergunta, alternativaA, alternativaB, alternativaC, alternativaD, alternativaE, alternativaCorreta, id);
-    
-    // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
-    //  e na ordem de inserção dos dados.
-    var instrucaoSql = `
-        INSERT INTO pergunta (numero, fkquiz, pergunta, alternativaA, alternativaB, alternativaC, alternativaD, alternativaE, alternativaCorreta) VALUES (${numero}, ${id}, '${pergunta}', '${alternativaA}', '${alternativaB}', '${alternativaC}', '${alternativaD}', '${alternativaE}', '${alternativaCorreta}');
-    `;
-    console.log("Executando a instrução SQL: \n" + instrucaoSql);
-    return database.executar(instrucaoSql);
-}
-
-function cadastrarResposta(id_usuario, id_quiz, num_pergunta, alternativa_escolhida) {
-    console.log("ACESSEI O QUIZ MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrarResposta():", id_usuario, id_quiz, num_pergunta, alternativa_escolhida);
-   
-    var instrucaoSql = `
-        INSERT INTO resposta (fkusuario, fkquiz, fkpergunta, alternativaEscolhida) VALUES (${id_usuario}, ${id_quiz}, ${num_pergunta}, '${alternativa_escolhida}');
-    `;
-    console.log("Executando a instrução SQL: \n" + instrucaoSql);
-    return database.executar(instrucaoSql);
-}
-
 module.exports = {
     cadastrar,
     listar, 
     listarUltimo,
-    cadastrarPergunta,
-    listarPerguntas,
-    listarRespostas,
-    cadastrarResposta
+    listarSelecionado
 };

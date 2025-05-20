@@ -170,50 +170,43 @@ async function cadastrarQuiz() {
 async function listarQuiz() {
     let idUsu = sessionStorage.ID_USUARIO;
 
-    fetch(`/quiz/listarUltimo`, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            id: idUsu
-        })
-    }).then(function (resposta) {
-        if (resposta.ok) {
-            console.log(resposta);
+    fetch(`/quiz/listarUltimo/${idUsu}`)
+        .then(function (resposta) {
+            if (resposta.ok) {
+                console.log(resposta);
 
-            resposta.json().then(json => {
-                console.log(json);
-                console.log(JSON.stringify(json));
-    
-                for (let i = 1; i <= 5; i++) {
-                    cadastrarPergunta(i, json[0].id);
-                }
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
 
-                modal.style.display = 'flex';
-    
-                respostaModal.innerHTML = '<img src="../img/icones/certoImg.png" alt="Icone de certo" class="iconesGra">';
-                respostaModal.innerHTML +=
-                    "<p> Quiz criado com sucesso! Redirecionando para a página de quizzes </p>";
-            
-                setTimeout(() => {
-                    window.location = "quiz.html";
-                }, "3000");
-            });
-        } if (resposta.status == 404) {
-            window.alert("Deu 404!");
-        } else {
-            throw ("Houve um erro ao tentar listar o quiz! Código da resposta: " + resposta.status);
-        }
-    }).catch(function (resposta) {
-        console.log(`#ERRO: ${resposta}`);
-    });
+                    for (let i = 1; i <= 5; i++) {
+                        cadastrarPergunta(i, json[0].id);
+                    }
+
+                    modal.style.display = 'flex';
+
+                    respostaModal.innerHTML = '<img src="../img/icones/certoImg.png" alt="Icone de certo" class="iconesGra">';
+                    respostaModal.innerHTML +=
+                        "<p> Quiz criado com sucesso! Redirecionando para a página de quizzes </p>";
+
+                    setTimeout(() => {
+                        window.location = "quiz.html";
+                    }, "3000");
+                });
+            } if (resposta.status == 404) {
+                window.alert("Deu 404!");
+            } else {
+                throw ("Houve um erro ao tentar listar o quiz! Código da resposta: " + resposta.status);
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
 }
 
 async function cadastrarPergunta(num, idquiz) {
     console.log(idquiz);
 
-    fetch(`/quiz/perguntas`, {
+    fetch(`/perguntas/cadastrar`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"

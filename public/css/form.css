@@ -294,7 +294,7 @@ button {
 
 .addquiz label {
     margin-top: 1rem;
-    padding-bottom: 0.5rem;
+    padding: 0.5rem;
     font-size: 1.5rem;
 }
 
@@ -310,6 +310,7 @@ button {
     display: flex;
     justify-content: center;
     gap: 1rem;
+    padding-top: 1rem;
 }
 
 .carrossel {
@@ -382,4 +383,12 @@ input[type="radio"]:checked {
     display: flex;
     align-items: center;
     gap: 1rem;
+}
+
+.resposta-errada {
+    background-color:  var(--corHeaderFooter);
+}
+
+.resposta-certa {
+    background-color: var(--corCerta);
 }

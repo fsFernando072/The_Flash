@@ -1,7 +1,7 @@
 const carrossel = document.querySelector('.carrossel');
 const respostaModal = document.querySelector('#respostas');
 
-let quizzes = [];
+let senhaQuiz = '';
 
 function exibirQuiz() {
     let publico = document.querySelector('#publicos .cards');
@@ -22,54 +22,87 @@ function exibirQuiz() {
             console.log("resposta: ", resposta);
 
             if (resposta.ok) {
+                if (resposta.statusText == 'No Content') {
+                    meusQuizzes.innerHTML = '<p> Você não possui nenhum quiz </p>';
+                    privado.innerHTML = '<p> Não há nenhum quiz privado </p>';
+                    publico.innerHTML = '<p> Não há nenhum quiz público </p>';
+                } else {
+                    resposta.json().then(function (resposta) {
+                        console.log("Dados recebidos: ", JSON.stringify(resposta));
+
+                        for (let i = 0; i < resposta.length; i++) {
+                            quizzes[i] = resposta[i];
+
+                            if (id == resposta[i].fkusuario) {
+                                temMeusQuizzes = true;
+                                fraseMeusQuizzes += `<article class="card" onclick="fazerQuiz(${resposta[i].id})">
+                                    <img src="../img/${resposta[i].imgQuiz}" alt="Imagem do quiz">
+                                    <h2> ${resposta[i].titulo} </h2>
+                                    <p> ${resposta[i].descricao} </p>
+                                    <p class="usuario"> <img src="../img/${resposta[i].imgUsu}" alt="Imagem do Usuário" id="imagem_usuario"> ${resposta[i].nome} </p>
+                                </article>`;
+                            } else if (resposta[i].senha == '') {
+                                temPublico = true;
+                                frasePublico += `<article class="card" onclick="fazerQuiz(${resposta[i].id})">
+                                    <img src="../img/${resposta[i].imgQuiz}" alt="Imagem do quiz">
+                                    <h2> ${resposta[i].titulo} </h2>
+                                    <p> ${resposta[i].descricao} </p>
+                                    <p class="usuario"> <img src="../img/${resposta[i].imgUsu}" alt="Imagem do Usuário" id="imagem_usuario"> ${resposta[i].nome} </p>
+                                </article>`;
+                            } else {
+                                temPrivado = true;
+                                frasePrivado += `<article class="card" onclick="fazerQuiz(${resposta[i].id})">
+                                    <img src="../img/${resposta[i].imgQuiz}" alt="Imagem do quiz">
+                                    <h2> ${resposta[i].titulo} </h2>
+                                    <p> ${resposta[i].descricao} </p>
+                                    <p class="usuario"> <img src="../img/${resposta[i].imgUsu}" alt="Imagem do Usuário" id="imagem_usuario"> ${resposta[i].nome} </p>
+                                </article>`;
+                            }
+
+                            if (!temPublico) {
+                                frasePublico = '<p> Não há nenhum quiz público </p>';
+                            }
+
+                            if (!temPrivado) {
+                                frasePrivado = '<p> Não há nenhum quiz privado </p>';
+                            }
+
+                            if (!temMeusQuizzes) {
+                                fraseMeusQuizzes = '<p> Você não possui nenhum quiz </p>';
+                            }
+
+                            meusQuizzes.innerHTML = fraseMeusQuizzes;
+                            privado.innerHTML = frasePrivado;
+                            publico.innerHTML = frasePublico
+                        }
+                    });
+                }
+            } else {
+                throw "Houve um erro ao tentar pegar os quizzes!";
+            }
+        })
+        .catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+}
+
+function fazerQuiz(idQuiz) {
+    sessionStorage.ID_QUIZ = idQuiz;
+
+    window.location = "responder_quiz.html";
+}
+
+function pegarQuiz() {
+    let idQuiz = sessionStorage.ID_QUIZ;
+
+    fetch(`/quiz/listarSelecionado/${idQuiz}`)
+        .then(function (resposta) {
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
                 resposta.json().then(function (resposta) {
                     console.log("Dados recebidos: ", JSON.stringify(resposta));
-
-                    for (let i = 0; i < resposta.length; i++) {
-                        quizzes[i] = resposta[i];
-
-                        if (id == resposta[i].fkusuario) {
-                            temMeusQuizzes = true;
-                            fraseMeusQuizzes += `<article class="card" onclick="fazerQuiz(${i})">
-                                <img src="../img/${resposta[i].imgQuiz}" alt="Imagem do quiz">
-                                <h2> ${resposta[i].titulo} </h2>
-                                <p> ${resposta[i].descricao} </p>
-                                <p class="usuario"> <img src="../img/${resposta[i].imgUsu}" alt="Imagem do Usuário" id="imagem_usuario"> ${resposta[i].nome} </p>
-                            </article>`;
-                        } else if (resposta[i].senha == '') {
-                            temPublico = true;
-                            frasePublico += `<article class="card" onclick="fazerQuiz(${i})">
-                                <img src="../img/${resposta[i].imgQuiz}" alt="Imagem do quiz">
-                                <h2> ${resposta[i].titulo} </h2>
-                                <p> ${resposta[i].descricao} </p>
-                                <p class="usuario"> <img src="../img/${resposta[i].imgUsu}" alt="Imagem do Usuário" id="imagem_usuario"> ${resposta[i].nome} </p>
-                            </article>`;
-                        } else {
-                            temPrivado = true;
-                            frasePrivado += `<article class="card" onclick="fazerQuiz(${i})">
-                                <img src="../img/${resposta[i].imgQuiz}" alt="Imagem do quiz">
-                                <h2> ${resposta[i].titulo} </h2>
-                                <p> ${resposta[i].descricao} </p>
-                                <p class="usuario"> <img src="../img/${resposta[i].imgUsu}" alt="Imagem do Usuário" id="imagem_usuario"> ${resposta[i].nome} </p>
-                            </article>`;
-                        }
-
-                        if (!temPublico) {
-                            frasePublico = '<p> Não há nenhum quiz público </p>';
-                        }
-
-                        if (!temPrivado) {
-                            frasePrivado = '<p> Não há nenhum quiz privado </p>';
-                        }
-
-                        if (!temMeusQuizzes) {
-                            fraseMeusQuizzes = '<p> Você não possui nenhum quiz </p>';
-                        }
-
-                        meusQuizzes.innerHTML = fraseMeusQuizzes;
-                        privado.innerHTML = frasePrivado;
-                        publico.innerHTML = frasePublico
-                    }
+                    exibirPerguntas(resposta);
                 });
             } else {
                 throw "Houve um erro ao tentar pegar os quizzes!";
@@ -80,36 +113,10 @@ function exibirQuiz() {
         });
 }
 
-function fazerQuiz(quiz) {
-    sessionStorage.ID_QUIZ = quizzes[quiz].id;
-    sessionStorage.TITULO_QUIZ = quizzes[quiz].titulo;
-    sessionStorage.DESCRICAO_QUIZ = quizzes[quiz].descricao;
-    sessionStorage.IMG_QUIZ = quizzes[quiz].imgQuiz;
-    sessionStorage.NOME_CRIADOR = quizzes[quiz].nome;
-    sessionStorage.IMG_CRIADOR = quizzes[quiz].imgUsu;
-    sessionStorage.SENHA_QUIZ = quizzes[quiz].senhaQuiz;
-
-    window.location = "responder_quiz.html";
-}
-
-function exibirPerguntas() {
+function exibirPerguntas(quiz) {
     let idQuiz = sessionStorage.ID_QUIZ;
-    let titulo = sessionStorage.TITULO_QUIZ;
-    let descricao = sessionStorage.DESCRICAO_QUIZ;
-    let imgQuiz = sessionStorage.IMG_QUIZ;
-    let nome = sessionStorage.NOME_CRIADOR;
-    let imgUsu = sessionStorage.IMG_CRIADOR;
-    let senha = sessionStorage.SENHA_QUIZ;
 
-    fetch("/quiz/listarPerguntas", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            id: idQuiz
-        })
-    })
+    fetch(`/perguntas/listar/${idQuiz}`)
         .then(function (resposta) {
             if (resposta.ok) {
                 resposta.json().then(function (resposta) {
@@ -118,21 +125,23 @@ function exibirPerguntas() {
                     for (let i = 0; i < 6; i++) {
                         if (i == 0) {
                             conteudo += `<section class="addquiz">`;
-                            conteudo += `<img src="../img/${imgQuiz}" alt="Imagem do quiz" id="foto_quiz">`;
+                            conteudo += `<img src="../img/${quiz[0].imgQuiz}" alt="Imagem do quiz" id="foto_quiz">`;
 
-                            conteudo += `<h1 class="titulo"> ${titulo} </h1>`;
+                            conteudo += `<h1 class="titulo"> ${quiz[0].titulo} </h1>`;
 
-                            conteudo += `<p> ${descricao} </p>`;
+                            conteudo += `<p> ${quiz[0].descricao} </p>`;
 
-                            conteudo += `<p class="usuario"> Feito por: <img src="../img/${imgUsu}" alt="Imagem do Usuário" id="imagem_usuario"> ${nome} </p>`;
+                            conteudo += `<p class="usuario"> Feito por: <img src="../img/${quiz[0].imgUsu}" alt="Imagem do Usuário" id="imagem_usuario"> ${quiz[0].nome} </p>`;
 
-                            if (senha == '') {
+                            if (quiz[0].senhaQuiz == '') {
                                 conteudo += `<section class="botoes">`;
 
                                 conteudo += `<button onclick="avancar(${i + 1}), subir()" class="botaoLink"> Iniciar </button>`;
 
                                 conteudo += `</section></section>`;
                             } else {
+                                senhaQuiz = quiz[0].senhaQuiz;
+
                                 conteudo += ` <label for="senha" id="label-senha"> Senha </label>`
                                 conteudo += `<input type="password" name="senha" id="senha" placeholder="Digite a senha do quiz">`;
 
@@ -148,7 +157,7 @@ function exibirPerguntas() {
                             conteudo += `<section class="addquiz">`;
                             conteudo += `<h1 class="titulo"> Pergunta ${i} </h1>`;
 
-                            conteudo += `<label for="pergunta${i}"> ${resposta[i - 1].pergunta} </label>`;
+                            conteudo += `<label> ${resposta[i - 1].pergunta} </label>`;
 
                             conteudo += `<label for="radAltA${i}" class="alternativa responder"> <input type="radio" name="radAlt${i}" id="radAltA${i}"> ${resposta[i - 1].alternativaA} </label>`;
 
@@ -174,6 +183,7 @@ function exibirPerguntas() {
                     }
 
                     carrossel.innerHTML += conteudo;
+                    exibirRespostas(resposta);
                 });
             } else if (resposta.status == 404) {
                 window.alert("Deu 404!");
@@ -189,7 +199,7 @@ function exibirPerguntas() {
 function validarSenha() {
     let senha = document.querySelector('#senha').value;
 
-    if (senha == sessionStorage.SENHA_QUIZ) {
+    if (senha == senhaQuiz) {
         avancar(1);
     } else {
         modal.style.display = 'flex';
@@ -198,35 +208,47 @@ function validarSenha() {
     }
 }
 
-function exibirRespostas() {
-    let id_quiz = sessionStorage.ID_QUIZ;
+function exibirRespostas(perguntas) {
+    console.log(perguntas)
+
+    let idQuiz = sessionStorage.ID_QUIZ;
 
     let id_usuario = sessionStorage.ID_USUARIO;
     let respondeu = false;
 
-    fetch("/quiz/listarRespostas", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            id: id_quiz
-        })
-    })
+    fetch(`/respostas/listar/${idQuiz}`)
         .then(function (resposta) {
             if (resposta.ok) {
-                if (resposta.statusText == 'No Content') {
-                    exibirPerguntas()
-                } else {
+                if (resposta.statusText != 'No Content') {
                     resposta.json().then(function (resposta) {
+                        console.log(resposta);
+
                         for (let i = 0; i < resposta.length; i++) {
                             if (resposta[i].fkusuario == id_usuario) {
                                 respondeu = true;
+
+                                let numPergunta = resposta[i].fkpergunta;
+
+                                let radio = document.querySelector(`#radAlt${perguntas[numPergunta - 1].alternativaCorreta}${numPergunta}`);
+                                radio.parentElement.classList.add('resposta-certa');
+                                radio.click();
+
+                                let botaoFinalizar = document.querySelectorAll('.carrossel .botaoLink');
+                                botaoFinalizar[botaoFinalizar.length - 1].style.display = 'none';
+
+                                if (perguntas[numPergunta - 1].alternativaCorreta != resposta[i].alternativaEscolhida) {
+                                    let radioEscolhido = document.querySelector(`#radAlt${resposta[i].alternativaEscolhida}${numPergunta}`);
+                                    radioEscolhido.parentElement.classList.add('resposta-errada');
+                                    radioEscolhido.click();
+                                }
                             }
                         }
-    
-                        if (!respondeu) {
-                            exibirPerguntas()
+
+                        if (respondeu) {
+                            let inputRadio = document.querySelectorAll('input[type="radio"]');
+                            inputRadio.forEach(input => {
+                                input.disabled = true;
+                            });
                         }
                     });
                 }
@@ -321,7 +343,7 @@ async function cadastrarResposta(num) {
     let id_quiz = sessionStorage.ID_QUIZ;
     let id_usuario = sessionStorage.ID_USUARIO;
 
-    fetch(`/quiz/cadastrarResposta`, {
+    fetch(`/respostas/cadastrar`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
