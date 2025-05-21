@@ -75,7 +75,7 @@ function pesquisar(pesquisa) {
              qui.fkusuario
              FROM quiz qui
         INNER JOIN usuario usu ON usu.id = qui.fkusuario
-        WHERE titulo = '${pesquisa}' || descricao = '$pesquisa';
+        WHERE titulo LIKE '%${pesquisa}%' || descricao LIKE '%$pesquisa%';
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
