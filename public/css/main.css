@@ -32,6 +32,10 @@ main {
     align-items: center;
 }
 
+#flash p {
+    font-size: 1.2rem;
+}
+
 .conteudo img {
     width: 40%;
     height: fit-content;
@@ -231,7 +235,7 @@ main .card h2 {
     height: 2rem;
 }
 
-.pagina-quiz .card img {
+.pagina-quiz .card > img:first-child {
     width: 16rem;
     height: 12rem;
 }
@@ -252,4 +256,23 @@ main .card h2 {
     gap: 1rem;
     border-top: 0.1rem solid var(--corTexto);
     margin-top: 0.5rem;
+}
+
+#resultados {
+    display: none;
+}
+
+#resultados .titulo {
+    margin-top: 1rem;
+}
+
+.voltar {
+    text-decoration: none;
+    color: var(--corTexto);
+    transition: all ease-in-out 0.2s;
+    font-size: 1.2rem;
+}
+
+.voltar:hover {
+    color: var(--corBotao);
 }

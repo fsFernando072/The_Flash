@@ -39,7 +39,7 @@ function exibirQuiz() {
                                     <img src="../img/${resposta[i].imgQuiz}" alt="Imagem do quiz">
                                     <h2> ${resposta[i].titulo} </h2>
                                     <p> ${resposta[i].descricao} </p>
-                                    <p class="usuario"> <img src="../img/${resposta[i].imgUsu}" alt="Imagem do Usuário" id="imagem_usuario"> ${resposta[i].nome} </p>
+                                    <p class="usuario"> <img src="../img/${resposta[i].imgUsu}" alt="Imagem do Usuário" class="img-usu"> ${resposta[i].nome} </p>
                                 </article>`;
                             } else if (resposta[i].senha == '') {
                                 temPublico = true;
@@ -47,7 +47,7 @@ function exibirQuiz() {
                                     <img src="../img/${resposta[i].imgQuiz}" alt="Imagem do quiz">
                                     <h2> ${resposta[i].titulo} </h2>
                                     <p> ${resposta[i].descricao} </p>
-                                    <p class="usuario"> <img src="../img/${resposta[i].imgUsu}" alt="Imagem do Usuário" id="imagem_usuario"> ${resposta[i].nome} </p>
+                                    <p class="usuario"> <img src="../img/${resposta[i].imgUsu}" alt="Imagem do Usuário" class="img-usu"> ${resposta[i].nome} </p>
                                 </article>`;
                             } else {
                                 temPrivado = true;
@@ -55,26 +55,81 @@ function exibirQuiz() {
                                     <img src="../img/${resposta[i].imgQuiz}" alt="Imagem do quiz">
                                     <h2> ${resposta[i].titulo} </h2>
                                     <p> ${resposta[i].descricao} </p>
-                                    <p class="usuario"> <img src="../img/${resposta[i].imgUsu}" alt="Imagem do Usuário" id="imagem_usuario"> ${resposta[i].nome} </p>
+                                    <p class="usuario"> <img src="../img/${resposta[i].imgUsu}" alt="Imagem do Usuário" class="img-usu"> ${resposta[i].nome} </p>
                                 </article>`;
                             }
-
-                            if (!temPublico) {
-                                frasePublico = '<p> Não há nenhum quiz público </p>';
-                            }
-
-                            if (!temPrivado) {
-                                frasePrivado = '<p> Não há nenhum quiz privado </p>';
-                            }
-
-                            if (!temMeusQuizzes) {
-                                fraseMeusQuizzes = '<p> Você não possui nenhum quiz </p>';
-                            }
-
-                            meusQuizzes.innerHTML = fraseMeusQuizzes;
-                            privado.innerHTML = frasePrivado;
-                            publico.innerHTML = frasePublico
                         }
+
+                        if (!temPublico) {
+                            frasePublico = '<p> Não há nenhum quiz público </p>';
+                        }
+
+                        if (!temPrivado) {
+                            frasePrivado = '<p> Não há nenhum quiz privado </p>';
+                        }
+
+                        if (!temMeusQuizzes) {
+                            fraseMeusQuizzes = '<p> Você não possui nenhum quiz </p>';
+                        }
+
+                        meusQuizzes.innerHTML = fraseMeusQuizzes;
+                        privado.innerHTML = frasePrivado;
+                        publico.innerHTML = frasePublico
+                    });
+                }
+            } else {
+                throw "Houve um erro ao tentar pegar os quizzes!";
+            }
+        })
+        .catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+}
+
+function pesquisarQuiz() {
+    let publico = document.querySelector('#publicos');
+    let privado = document.querySelector('#privados');
+    let meusQuizzes = document.querySelector('#meus_quizzes');
+    let resultado = document.querySelector('#resultados');
+    let cardResultados = resultado.querySelector('.cards');
+    let pesquisa = document.querySelector('#pesquisar').value;
+
+    publico.style.display = 'none';
+    privado.style.display = 'none';
+    meusQuizzes.style.display = 'none';
+    resultado.style.display = 'block';
+
+    let fraseResultado = '';
+
+    fetch("/quiz/pesquisar", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            pesquisa: pesquisa
+        })
+    })
+        .then(function (resposta) {
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+                if (resposta.statusText == 'No Content') {
+                    cardResultados.innerHTML = '<p> Nenhum resultado foi encontrado! </p>';
+                } else {
+                    resposta.json().then(function (resposta) {
+                        console.log("Dados recebidos: ", JSON.stringify(resposta));
+
+                        for (let i = 0; i < resposta.length; i++) {
+                            fraseResultado += `<article class="card" onclick="fazerQuiz(${resposta[i].id})">
+                                    <img src="../img/${resposta[i].imgQuiz}" alt="Imagem do quiz">
+                                    <h2> ${resposta[i].titulo} </h2>
+                                    <p> ${resposta[i].descricao} </p>
+                                    <p class="usuario"> <img src="../img/${resposta[i].imgUsu}" alt="Imagem do Usuário" class="img-usu"> ${resposta[i].nome} </p>
+                                </article>`;
+                        }
+
+                        cardResultados.innerHTML = fraseResultado;
                     });
                 }
             } else {
@@ -131,7 +186,7 @@ function exibirPerguntas(quiz) {
 
                             conteudo += `<p> ${quiz[0].descricao} </p>`;
 
-                            conteudo += `<p class="usuario"> Feito por: <img src="../img/${quiz[0].imgUsu}" alt="Imagem do Usuário" id="imagem_usuario"> ${quiz[0].nome} </p>`;
+                            conteudo += `<p class="usuario"> Feito por: <img src="../img/${quiz[0].imgUsu}" alt="Imagem do Usuário" class="img-usu"> ${quiz[0].nome} </p>`;
 
                             if (quiz[0].senhaQuiz == '') {
                                 conteudo += `<section class="botoes">`;
@@ -228,7 +283,7 @@ function exibirRespostas(perguntas) {
                         let vetorQtd = [];
 
                         for (let i = 0; i < 5; i++) {
-                            vetorQtd.push({A: 0, B: 0, C: 0, D: 0, E: 0});
+                            vetorQtd.push({ A: 0, B: 0, C: 0, D: 0, E: 0 });
                         }
 
                         for (let i = 0; i < resposta.length; i++) {
@@ -287,10 +342,9 @@ function exibirRespostas(perguntas) {
         });
 }
 
-Chart.defaults.color = '#ffffff';
-Chart.defaults.font.size = 16;
-
 function plotarGrafico(resposta, numero) {
+    Chart.defaults.color = '#ffffff';
+    Chart.defaults.font.size = 16;
 
     console.log('iniciando plotagem do gráfico...');
 
@@ -302,11 +356,11 @@ function plotarGrafico(resposta, numero) {
             label: 'Alternativas',
             data: [],
             backgroundColor: [
-                'rgb(54, 162, 235)',
-                'rgb(255, 205, 86)',
-                'rgb(255, 99, 132)',
-                'rgb(54, 205, 86)',
-                'rgb(180, 22, 138)'
+                'rgb(4, 73, 211)',
+                'rgb(250, 177, 16)',
+                'rgb(134, 8, 29)',
+                'rgb(6, 144, 6)',
+                'rgb(151, 7, 208)'
             ],
         },
         ]
@@ -328,7 +382,7 @@ function plotarGrafico(resposta, numero) {
             plugins: {
                 title: {
                     display: true,
-                    text: `Respostas pergunta ${numero + 1}`,
+                    text: `Respostas`,
                     font: {
                         size: 28
                     },

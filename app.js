@@ -33,6 +33,10 @@ app.use("/quiz", quizRouter);
 app.use("/perguntas", perguntaRouter);
 app.use("/respostas", respostaRouter);
 
+app.use((req, res) => {
+    res.status(404).sendFile(path.resolve('public/pg404.html')); 
+});
+
 app.listen(PORTA_APP, function () {
     console.log(`
     ##   ##  ######   #####             ####       ##     ######     ##              ##  ##    ####    ######  

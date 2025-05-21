@@ -19,4 +19,8 @@ router.get("/listarSelecionado/:idQuiz", function (req, res) {
     quizController.listarSelecionado(req, res);
 })
 
+router.post("/pesquisar", function (req, res) {
+    quizController.pesquisar(req, res);
+})
+
 module.exports = router;

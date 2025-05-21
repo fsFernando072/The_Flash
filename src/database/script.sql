@@ -1,11 +1,6 @@
 CREATE DATABASE the_flash;
 USE the_flash;
 
-CREATE TABLE temporada (
-	id INT PRIMARY KEY AUTO_INCREMENT,
-    descricao VARCHAR(100) NOT NULL
-);
-
 CREATE TABLE personagem (
 	id INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(60) NOT NULL,

@@ -8,7 +8,7 @@ function validarSessao() {
     if (email != null && nome != null && caminhoImagem != null) {
         imagem_usuario.src = `../img/${caminhoImagem}`;
     } else {
-        window.location = "../login.html";
+        window.location = "../index.html";
     }
 }
 

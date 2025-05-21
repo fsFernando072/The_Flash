@@ -61,9 +61,30 @@ function listarUltimo(id) {
     return database.executar(instrucaoSql);
 }
 
+function pesquisar(pesquisa) {
+    console.log("ACESSEI O QUIZ MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function pesquisar(): ", pesquisa);
+
+    var instrucaoSql = `
+        SELECT qui.titulo,
+            qui.id,
+             qui.descricao,
+             qui.senha senhaQuiz,
+             qui.caminhoImagem imgQuiz,
+             usu.nome,
+             usu.caminhoImagem imgUsu,
+             qui.fkusuario
+             FROM quiz qui
+        INNER JOIN usuario usu ON usu.id = qui.fkusuario
+        WHERE titulo = '${pesquisa}' || descricao = '$pesquisa';
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
     cadastrar,
     listar, 
     listarUltimo,
-    listarSelecionado
+    listarSelecionado,
+    pesquisar
 };
