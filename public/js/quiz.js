@@ -154,7 +154,7 @@ function exibirPerguntas(quiz) {
 
 
                         } else {
-                            conteudo += `<section class="addquiz">`;
+                            conteudo += `<section class="responder-quiz">`;
                             conteudo += `<h1 class="titulo"> Pergunta ${i} </h1>`;
 
                             conteudo += `<label> ${resposta[i - 1].pergunta} </label>`;
@@ -179,6 +179,8 @@ function exibirPerguntas(quiz) {
                             }
 
                             conteudo += `</section></section>`;
+
+                            conteudo += `<section class="grafico-resposta"> <canvas id="dashboard-per${i + 1}"></canvas> </section>`;
                         }
                     }
 
@@ -223,11 +225,29 @@ function exibirRespostas(perguntas) {
                     resposta.json().then(function (resposta) {
                         console.log(resposta);
 
+                        let vetorQtd = [];
+
+                        for (let i = 0; i < 5; i++) {
+                            vetorQtd.push({A: 0, B: 0, C: 0, D: 0, E: 0});
+                        }
+
                         for (let i = 0; i < resposta.length; i++) {
+                            let numPergunta = resposta[i].fkpergunta;
+
+                            if (resposta[i].alternativaEscolhida == 'A') {
+                                vetorQtd[numPergunta - 1].A += 1;
+                            } else if (resposta[i].alternativaEscolhida == 'B') {
+                                vetorQtd[numPergunta - 1].B += 1;
+                            } else if (resposta[i].alternativaEscolhida == 'C') {
+                                vetorQtd[numPergunta - 1].C += 1;
+                            } else if (resposta[i].alternativaEscolhida == 'D') {
+                                vetorQtd[numPergunta - 1].D += 1;
+                            } else {
+                                vetorQtd[numPergunta - 1].E += 1;
+                            }
+
                             if (resposta[i].fkusuario == id_usuario) {
                                 respondeu = true;
-
-                                let numPergunta = resposta[i].fkpergunta;
 
                                 let radio = document.querySelector(`#radAlt${perguntas[numPergunta - 1].alternativaCorreta}${numPergunta}`);
                                 radio.parentElement.classList.add('resposta-certa');
@@ -249,6 +269,10 @@ function exibirRespostas(perguntas) {
                             inputRadio.forEach(input => {
                                 input.disabled = true;
                             });
+
+                            for (let i = 0; i < 5; i++) {
+                                plotarGrafico(vetorQtd[i], i);
+                            }
                         }
                     });
                 }
@@ -261,6 +285,66 @@ function exibirRespostas(perguntas) {
         .catch(function (resposta) {
             console.log(`#ERRO: ${resposta}`);
         });
+}
+
+Chart.defaults.color = '#ffffff';
+Chart.defaults.font.size = 16;
+
+function plotarGrafico(resposta, numero) {
+
+    console.log('iniciando plotagem do gráfico...');
+
+    let labels = ['A', 'B', 'C', 'D', 'E'];
+
+    let dados = {
+        labels: labels,
+        datasets: [{
+            label: 'Alternativas',
+            data: [],
+            backgroundColor: [
+                'rgb(54, 162, 235)',
+                'rgb(255, 205, 86)',
+                'rgb(255, 99, 132)',
+                'rgb(54, 205, 86)',
+                'rgb(180, 22, 138)'
+            ],
+        },
+        ]
+    };
+
+    console.log(resposta)
+
+    dados.datasets[0].data.push(resposta.A);
+    dados.datasets[0].data.push(resposta.B);
+    dados.datasets[0].data.push(resposta.C);
+    dados.datasets[0].data.push(resposta.D);
+    dados.datasets[0].data.push(resposta.E);
+
+    // Criando estrutura para plotar gráfico - config
+    let config = {
+        type: 'pie',
+        data: dados,
+        options: {
+            plugins: {
+                title: {
+                    display: true,
+                    text: `Respostas pergunta ${numero + 1}`,
+                    font: {
+                        size: 28
+                    },
+                    padding: {
+                        top: 16,
+                        bottom: 16
+                    }
+                }
+            }
+        }
+    }
+
+    let meuGrafico = new Chart(
+        document.getElementById(`dashboard-per${numero + 2}`),
+        config
+    );
 }
 
 let perguntas = [];
@@ -365,3 +449,4 @@ async function cadastrarResposta(num) {
         console.log(`#ERRO: ${resposta}`);
     });
 }
+
