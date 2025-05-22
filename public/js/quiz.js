@@ -41,7 +41,7 @@ function exibirQuiz() {
                                     <p> ${resposta[i].descricao} </p>
                                     <p class="usuario"> <img src="../img/${resposta[i].imgUsu}" alt="Imagem do Usuário" class="img-usu"> ${resposta[i].nome} </p>
                                 </article>`;
-                            } else if (resposta[i].senha == '') {
+                            } else if (resposta[i].senhaQuiz == '') {
                                 temPublico = true;
                                 frasePublico += `<article class="card" onclick="fazerQuiz(${resposta[i].id})">
                                     <img src="../img/${resposta[i].imgQuiz}" alt="Imagem do quiz">
@@ -283,22 +283,16 @@ function exibirRespostas(perguntas) {
                         let vetorQtd = [];
 
                         for (let i = 0; i < 5; i++) {
-                            vetorQtd.push({ A: 0, B: 0, C: 0, D: 0, E: 0 });
+                            vetorQtd.push({Certas: 0, Erradas: 0});
                         }
 
                         for (let i = 0; i < resposta.length; i++) {
                             let numPergunta = resposta[i].fkpergunta;
 
-                            if (resposta[i].alternativaEscolhida == 'A') {
-                                vetorQtd[numPergunta - 1].A += 1;
-                            } else if (resposta[i].alternativaEscolhida == 'B') {
-                                vetorQtd[numPergunta - 1].B += 1;
-                            } else if (resposta[i].alternativaEscolhida == 'C') {
-                                vetorQtd[numPergunta - 1].C += 1;
-                            } else if (resposta[i].alternativaEscolhida == 'D') {
-                                vetorQtd[numPergunta - 1].D += 1;
+                            if (resposta[i].alternativaEscolhida == perguntas[numPergunta - 1].alternativaCorreta) {
+                                vetorQtd[numPergunta - 1].Certas += 1;
                             } else {
-                                vetorQtd[numPergunta - 1].E += 1;
+                                vetorQtd[numPergunta - 1].Erradas += 1;
                             }
 
                             if (resposta[i].fkusuario == id_usuario) {
@@ -348,7 +342,7 @@ function plotarGrafico(resposta, numero) {
 
     console.log('iniciando plotagem do gráfico...');
 
-    let labels = ['A', 'B', 'C', 'D', 'E'];
+    let labels = ['Certas', 'Erradas'];
 
     let dados = {
         labels: labels,
@@ -356,23 +350,22 @@ function plotarGrafico(resposta, numero) {
             label: 'Alternativas',
             data: [],
             backgroundColor: [
-                'rgb(4, 73, 211)',
-                'rgb(250, 177, 16)',
-                'rgb(134, 8, 29)',
-                'rgb(6, 144, 6)',
-                'rgb(151, 7, 208)'
+                'rgba(11, 188, 11, 0.8)',
+                'rgba(163, 5, 32, 0.8)',
             ],
+            borderColor: [
+                'rgb(0, 78, 0)',
+                'rgb(82, 3, 16)',
+            ],
+            borderWidth: 4
         },
         ]
     };
 
     console.log(resposta)
 
-    dados.datasets[0].data.push(resposta.A);
-    dados.datasets[0].data.push(resposta.B);
-    dados.datasets[0].data.push(resposta.C);
-    dados.datasets[0].data.push(resposta.D);
-    dados.datasets[0].data.push(resposta.E);
+    dados.datasets[0].data.push(resposta.Certas);
+    dados.datasets[0].data.push(resposta.Erradas);
 
     // Criando estrutura para plotar gráfico - config
     let config = {
