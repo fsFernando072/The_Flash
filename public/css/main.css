@@ -178,7 +178,7 @@ main .card h2 {
     text-align: center;
 }
 
-#quizzes button {
+#quizzes .secao_pesquisa button {
     background-color: var(--corBotao);
     border: none;
     border-radius: 0 2rem 2rem 0;
@@ -192,7 +192,7 @@ main .card h2 {
 }
 
 #quizzes button:hover {
-    background-color: #ce8f07;;
+    background-color: #ce8f07;
 }
 
 #quizzes button img{
@@ -274,4 +274,39 @@ main .card h2 {
 
 .voltar:hover {
     color: var(--corBotao);
+}
+
+.botoes-tipos {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    place-items: center;
+    padding-top: 2rem;
+}
+
+.botoes-tipos button {
+    width: 100%;
+    padding: 2rem;
+    cursor: pointer;
+    font-size: 1.5rem;
+    transition: all 0.2s ease-in-out;
+    border: none;
+    background-color: var(--corCard);
+    color: var(--corTexto);
+}
+
+.botoes-tipos .btn-selecionado {
+    background-color: #ce8f07;
+}
+
+.botoes-tipos button:first-child {
+    border-radius: 2rem 0 0 2rem;
+}
+
+.botoes-tipos button:last-child {
+    border-radius: 0 2rem 2rem 0;
+}
+
+#privados, #meus_quizzes {
+    display: none;
 }

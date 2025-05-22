@@ -41,7 +41,9 @@ function exibirQuiz() {
                                     <p> ${resposta[i].descricao} </p>
                                     <p class="usuario"> <img src="../img/${resposta[i].imgUsu}" alt="Imagem do Usuário" class="img-usu"> ${resposta[i].nome} </p>
                                 </article>`;
-                            } else if (resposta[i].senhaQuiz == '') {
+                            } 
+                            
+                            if (resposta[i].senhaQuiz == '') {
                                 temPublico = true;
                                 frasePublico += `<article class="card" onclick="fazerQuiz(${resposta[i].id})">
                                     <img src="../img/${resposta[i].imgQuiz}" alt="Imagem do quiz">
@@ -86,10 +88,44 @@ function exibirQuiz() {
         });
 }
 
+function exibir(tipo) {
+    let tipoQuiz = document.querySelector(`#${tipo}`);
+    let botoesTipos = document.querySelectorAll('.botoes-tipos button');
+    
+    tipoQuiz.style.display = 'block';
+
+    let indice = 0;
+    if (tipo == 'publicos') {
+        privados.style.display = 'none';
+        meus_quizzes.style.display = 'none';
+        indice = 0;
+    } else if (tipo == 'privados') {
+        publicos.style.display = 'none';
+        meus_quizzes.style.display = 'none';
+        indice = 1;
+    } else {
+        privados.style.display = 'none';
+        publicos.style.display = 'none';
+        indice = 2;
+    }
+
+    if (!botoesTipos[indice].classList.contains('btn-selecionado')) {
+        botoesTipos[indice].classList.add('btn-selecionado');
+    }
+
+    for (let i = 0; i < botoesTipos.length; i++) {
+        if (botoesTipos[i].classList.contains('btn-selecionado') && botoesTipos[i] != botoesTipos[indice]) {
+            botoesTipos[i].classList.toggle('btn-selecionado');
+        }
+    }
+ }
+
 function pesquisarQuiz() {
     let publico = document.querySelector('#publicos');
     let privado = document.querySelector('#privados');
     let meusQuizzes = document.querySelector('#meus_quizzes');
+    let botoesTipos = document.querySelector('.botoes-tipos');
+
     let resultado = document.querySelector('#resultados');
     let cardResultados = resultado.querySelector('.cards');
     let pesquisa = document.querySelector('#pesquisar').value;
@@ -97,6 +133,7 @@ function pesquisarQuiz() {
     publico.style.display = 'none';
     privado.style.display = 'none';
     meusQuizzes.style.display = 'none';
+    botoesTipos.style.display = 'none';
     resultado.style.display = 'block';
 
     let fraseResultado = '';
