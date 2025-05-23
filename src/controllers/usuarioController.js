@@ -77,23 +77,6 @@ function cadastrar(req, res) {
     }
 }
 
-function pegarImagens(req, res) {
-    usuarioModel.pegarImagens()
-        .then(
-            function(resultado) {
-                if (resultado.length > 0) {
-                    res.status(200).json(resultado);
-                } else {
-                    res.status(204).send("Nenhum resultado encontrado!")
-                }
-            }
-        ).catch(function (erro) {
-            console.log(erro);
-            console.log("Houve um erro ao buscar as imagens: ", erro.sqlMessage);
-            res.status(500).json(erro.sqlMessage);
-        });
-}
-
 function atualizarPerfil(req, res) {
     let id = req.body.id;
     let nome = req.body.nome;
@@ -120,6 +103,5 @@ function atualizarPerfil(req, res) {
 module.exports = {
     autenticar,
     cadastrar,
-    pegarImagens,
     atualizarPerfil
 }

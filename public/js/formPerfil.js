@@ -32,7 +32,7 @@ function fecharModalPerfil() {
 function alterarImagem() {
     modalPerfil.style.display = 'flex';
 
-    fetch("/usuarios/imagens")
+    fetch("/personagens/imagens")
         .then(function (resposta) {
             console.log("resposta: ", resposta);
 

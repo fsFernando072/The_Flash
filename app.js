@@ -20,6 +20,7 @@ var usuarioRouter = require("./src/routes/usuarios");
 var quizRouter = require("./src/routes/quiz");
 var perguntaRouter = require("./src/routes/perguntas");
 var respostaRouter = require("./src/routes/respostas");
+var personagemRouter = require("./src/routes/personagens");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -32,6 +33,7 @@ app.use("/usuarios", usuarioRouter);
 app.use("/quiz", quizRouter);
 app.use("/perguntas", perguntaRouter);
 app.use("/respostas", respostaRouter);
+app.use("/personagens", personagemRouter);
 
 app.use((req, res) => {
     res.status(404).sendFile(path.resolve('public/pg404.html')); 

@@ -292,7 +292,7 @@ function alterarImagem() {
     const fotoQuiz = document.getElementById('foto_quiz');
     modalQuiz.style.display = 'flex';
 
-    fetch("/usuarios/imagens")
+    fetch("/personagens/imagens")
         .then(function (resposta) {
             console.log("resposta: ", resposta);
 

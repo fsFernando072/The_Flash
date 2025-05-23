@@ -65,16 +65,16 @@ main .card {
     cursor: pointer;
     border: none;
     border-radius: 1rem;
+    position: relative;
 }
-
 
 main .card:hover{
     transform: scale(1.05);
 }
 
-main .card img {
-    width: 300px;
-    height: 300px;
+main .card img:first {
+    width: 18.75rem;
+    height: 18.75rem;
 
     border-radius: 1rem 1rem 0 0;
     border: none;
@@ -195,9 +195,10 @@ main .card h2 {
     background-color: #ce8f07;
 }
 
-#quizzes button img{
+#quizzes .secao_pesquisa button img{
     width: 2rem;
     height: 2rem;
+    vertical-align: middle;
 }
 
 #quizzes input#pesquisar {
@@ -285,6 +286,10 @@ main .card h2 {
 }
 
 .botoes-tipos button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
     width: 100%;
     padding: 2rem;
     cursor: pointer;
@@ -293,6 +298,12 @@ main .card h2 {
     border: none;
     background-color: var(--corCard);
     color: var(--corTexto);
+}
+
+.botoes-tipos button img {
+    filter: invert(100%);
+    width: 1.5rem;
+    height: 1.5rem;
 }
 
 .botoes-tipos .btn-selecionado {
@@ -309,4 +320,13 @@ main .card h2 {
 
 #privados, #meus_quizzes {
     display: none;
+}
+
+.tipoQuiz {
+    position: absolute;
+    right: 1.5rem;
+    bottom: 1.5rem;
+    width: 2rem;
+    height: 2rem;
+    filter: invert(100%);
 }

@@ -4,18 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Responder Quiz - The Flash </title>
+    <title> Personagens - The Flash </title>
     <link rel="stylesheet" href="../css/body.css">
     <link rel="stylesheet" href="../css/header.css">
     <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" href="../css/footer.css">
-    <link rel="stylesheet" href="../css/form.css">
     <link rel="shortcut icon" href="../img/logo/logoCurta.png" type="image/x-icon">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="../js/sessao.js"></script>
 </head>
 
-<body onload="validarSessao(), pegarQuiz()">
+<body onload="validarSessao(), exibirQuiz()">
     <header>
         <section class="container">
             <nav class="menu">
@@ -64,38 +62,59 @@
         </section>
     </header>
 
-    <main class="quiz">
-        <section class="container">
+    <main class="pagina-quiz">
+        <section id="quizzes" class="container">
+            <h1 class="titulo"> Personagens </h1>
+
+            <section class="secao_pesquisa">
+                <input type="search" name="pesquisar" id="pesquisar" placeholder="Pesquise o nome do personagem">
+                <button onclick="pesquisarPersonagem()">
+                    <img src="../img/icones/lupaImg.png" alt="Icone de Lupa">
+                </button>
+            </section>
+
+            <section class="botoes-tipos">
+                <button onclick="exibir('publicos')" class="btn-selecionado">
+                    <img src="../img/icones/semSenhaImg.png" alt="Icone de quizzes públicos">
+                    Equipe
+                </button>
+
+                <button onclick="exibir('privados')">
+                    <img src="../img/icones/senhaImg.png" alt="Icone de quizzes privados">
+                    Vilões
+                </button>
+
+                <button onclick="exibir('meus_quizzes')">
+                    <img src="../img/icones/userImg.png" alt="Icone de meus quizzes">
+                    Heróis parceiros
+                </button>
+            </section>
+        </section>
+
+        <section class="container" id="publicos">
+            <h1 class="titulo"> Equipe </h1>
+            <section class="cards"></section>
+        </section>
+
+        <section class="container" id="privados">
+            <h1 class="titulo"> Vilões </h1>
+            <section class="cards"></section>
+        </section>
+
+        <section class="container" id="meus_quizzes">
+            <h1 class="titulo">
+                Parceiros
+            </h1>
+            <section class="cards"></section>
+        </section>
+
+        <section class="container" id="resultados">
             <a href="quiz.html" class="voltar"> &#8617; Voltar aos quizzes </a>
 
-            <section class="carrossel">
-
-                
-            </section>
-
-        </section>
-
-        <section class="modal" id="modal-resposta">
-            <section class="modal-conteudo">
-                <button class="fechar" id="fechar">
-                    <img src="../img/icones/fecharImg.png" alt="Icone de Fechar">
-                </button>
-
-                <section id="respostas">
-                </section>
-            </section>
-        </section>
-
-        <section class="modal" id="modal-quiz">
-            <section class="modal-conteudo">
-                <button class="fechar" id="fechar-modal-quiz">
-                    <img src="../img/icones/fecharImg.png" alt="Icone de Fechar">
-                </button>
-
-                <section id="imagens">
-
-                </section>
-            </section>
+            <h1 class="titulo">
+                Resultados
+            </h1>
+            <section class="cards"></section>
         </section>
     </main>
 
@@ -105,7 +124,7 @@
         </section>
     </footer>
 </body>
-<script src="../js/modal.js"></script>
-<script src="../js/responderQuiz.js"></script>
+
+<script src="../js/quiz.js"></script>
 
 </html>

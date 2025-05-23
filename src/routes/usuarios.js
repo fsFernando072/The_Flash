@@ -12,10 +12,6 @@ router.post("/autenticar", function (req, res) {
     usuarioController.autenticar(req, res);
 });
 
-router.get("/imagens", function (req, res) {
-    usuarioController.pegarImagens(req, res);
-});
-
 router.put("/editar", function (req, res) {
     usuarioController.atualizarPerfil(req, res);
 });
