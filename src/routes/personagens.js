@@ -7,4 +7,12 @@ router.get("/imagens", function (req, res) {
     personagemController.pegarImagens(req, res);
 });
 
+router.get("/listar", function (req, res) {
+    personagemController.listar(req, res);
+});
+
+router.post("/pesquisar", function (req, res) {
+    personagemController.pesquisar(req, res);
+});
+
 module.exports = router;

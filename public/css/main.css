@@ -72,17 +72,6 @@ main .card:hover{
     transform: scale(1.05);
 }
 
-main .card img:first {
-    width: 18.75rem;
-    height: 18.75rem;
-
-    border-radius: 1rem 1rem 0 0;
-    border: none;
-    
-    object-fit: cover;
-    transition: all 0.3s ease-in-out;
-}
-
 main .card h2 {
     padding: 2rem;
 } 
@@ -237,7 +226,15 @@ main .card h2 {
 }
 
 .pagina-quiz .card > img:first-child {
+    width: 18rem;
     height: 12rem;
+    object-fit: cover;
+    border-radius: 1rem 1rem 0 0;
+    object-position: 50% 0;
+}
+
+.pagina-quiz .card p:first-of-type {
+    padding: 0 1rem;
 }
 
 .pagina-quiz .cards {
@@ -318,7 +315,7 @@ main .card h2 {
     border-radius: 0 2rem 2rem 0;
 }
 
-#privados, #meus_quizzes {
+#privados, #meus_quizzes, #viloes, #favorito {
     display: none;
 }
 
@@ -329,4 +326,27 @@ main .card h2 {
     width: 2rem;
     height: 2rem;
     filter: invert(100%);
+}
+
+#modal-carregar img {
+    width: 5rem;
+    height: 5rem;
+    filter: invert(100%);
+    position: relative;
+}
+
+#modal-carregar .carregar {
+    width: 7rem;
+    height: 7rem;
+    border: 0.2rem solid var(--corTexto2);
+    border-radius: 50%;
+    border-top-color: var(--corBotao);
+    position: absolute;
+    animation: linear infinite 1s carregar;
+}
+
+@keyframes carregar {
+    100% {
+        transform: rotate(360deg);
+    }
 }

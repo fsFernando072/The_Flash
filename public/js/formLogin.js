@@ -4,6 +4,7 @@ const respostaModal = document.querySelector('#respostas');
 botaoEntrar.addEventListener('click', verificar);
 
 function verificar() {
+    carregar();
     let email = document.querySelector('#email').value;
     let senha = document.querySelector('#senha').value;
 
@@ -14,6 +15,7 @@ function verificar() {
     }
 
     if (erros != '') {
+        fecharCarregar();
         modal.style.display = 'flex';
         respostaModal.innerHTML = '<img src="img/icones/erroImg.png" alt="Icone de erro" class="iconesGra">';
         respostaModal.innerHTML += erros;
@@ -54,6 +56,7 @@ function verificar() {
 
                 resposta.text().then(texto => {
                     console.error(texto);
+                    fecharCarregar()
                     modal.style.display = 'flex';
                     respostaModal.innerHTML = '<img src="img/icones/erroImg.png" alt="Icone de erro" class="iconesGra">';
                     respostaModal.innerHTML += texto;

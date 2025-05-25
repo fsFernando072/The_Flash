@@ -311,10 +311,12 @@ function subir() {
 }
 
 async function finalizar() {
+    carregar();
     for (let i = 1; i <= 5; i++) {
         await cadastrarResposta(i);
     }
 
+    fecharCarregar();
     modal.style.display = 'flex';
 
     respostaModal.innerHTML = '<img src="../img/icones/certoImg.png" alt="Icone de certo" class="iconesGra">';

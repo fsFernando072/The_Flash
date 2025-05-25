@@ -13,7 +13,7 @@
     <script src="../js/sessao.js"></script>
 </head>
 
-<body onload="validarSessao(), exibirQuiz()">
+<body onload="validarSessao(), exibirPersonagem()">
     <header>
         <section class="container">
             <nav class="menu">
@@ -39,7 +39,7 @@
                     </li>
                     <li>
                         <a href="personagens.html">
-                            <img src="../img/icones/userImg.png" alt="Icone de personagem">
+                            <img src="../img/icones/raioPreenchidoImg.png" alt="Icone de raio de personagem">
                             Personagens
                         </a>
                     </li>
@@ -74,46 +74,42 @@
             </section>
 
             <section class="botoes-tipos">
-                <button onclick="exibir('publicos')" class="btn-selecionado">
-                    <img src="../img/icones/semSenhaImg.png" alt="Icone de quizzes públicos">
+                <button onclick="exibir('equipe')" class="btn-selecionado">
+                    <img src="../img/icones/raioPreenchidoImg.png" alt="Icone de raio de equipe">
                     Equipe
                 </button>
 
-                <button onclick="exibir('privados')">
-                    <img src="../img/icones/senhaImg.png" alt="Icone de quizzes privados">
+                <button onclick="exibir('viloes')">
+                    <img src="../img/icones/raioPreenchidoImg.png" alt="Icone de raio de vilões">
                     Vilões
                 </button>
 
-                <button onclick="exibir('meus_quizzes')">
-                    <img src="../img/icones/userImg.png" alt="Icone de meus quizzes">
-                    Heróis parceiros
+                <button onclick="exibir('favorito')">
+                    <img src="../img/icones/estrelaImg.png" alt="Icone de favorito">
+                    Favorito
                 </button>
             </section>
         </section>
 
-        <section class="container" id="publicos">
+        <section class="container" id="equipe">
             <h1 class="titulo"> Equipe </h1>
             <section class="cards"></section>
         </section>
 
-        <section class="container" id="privados">
+        <section class="container" id="viloes">
             <h1 class="titulo"> Vilões </h1>
             <section class="cards"></section>
         </section>
 
-        <section class="container" id="meus_quizzes">
-            <h1 class="titulo">
-                Parceiros
-            </h1>
+        <section class="container" id="favorito">
+            <h1 class="titulo"> Favorito </h1>
             <section class="cards"></section>
         </section>
 
         <section class="container" id="resultados">
-            <a href="quiz.html" class="voltar"> &#8617; Voltar aos quizzes </a>
+            <a href="personagens.html" class="voltar"> &#8617; Voltar aos personagens </a>
 
-            <h1 class="titulo">
-                Resultados
-            </h1>
+            <h1 class="titulo"> Resultados </h1>
             <section class="cards"></section>
         </section>
     </main>
@@ -124,7 +120,5 @@
         </section>
     </footer>
 </body>
-
-<script src="../js/quiz.js"></script>
-
+<script src="../js/personagens.js"></script>
 </html>

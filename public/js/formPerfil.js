@@ -77,6 +77,7 @@ function alterarImagem() {
 }
 
 function editarPerfil() {
+    carregar();
     let nome = document.querySelector('#nome').value;
     let email = document.querySelector('#email').value;
     let novaSenha = document.querySelector('#senha').value;
@@ -103,6 +104,7 @@ function editarPerfil() {
     }
 
     if (erros != '') {
+        fecharCarregar();
         modal.style.display = 'flex';
         respostaModal.innerHTML = '<img src="../img/icones/erroImg.png" alt="Icone de erro" class="iconesGra">';
         respostaModal.innerHTML += erros;
@@ -124,6 +126,7 @@ function editarPerfil() {
         }).then(function (resposta) {
 
             if (resposta.ok) {
+                fecharCarregar();
                 modal.style.display = 'flex';
     
                 respostaModal.innerHTML = '<img src="../img/icones/certoImg.png" alt="Icone de certo" class="iconesGra">';

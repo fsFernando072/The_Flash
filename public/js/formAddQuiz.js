@@ -128,6 +128,8 @@ async function finalizar() {
 }
 
 async function cadastrarQuiz() {
+    carregar();
+
     let titulo = document.querySelector('#titulo').value;
     let descricao = document.querySelector('#descricao').value;
     let tipo = document.querySelector('#tipo').value;
@@ -183,6 +185,7 @@ async function listarQuiz() {
                         cadastrarPergunta(i, json[0].id);
                     }
 
+                    fecharCarregar();
                     modal.style.display = 'flex';
 
                     respostaModal.innerHTML = '<img src="../img/icones/certoImg.png" alt="Icone de certo" class="iconesGra">';

@@ -17,6 +17,44 @@ function pegarImagens(req, res) {
         });
 }
 
+function listar(req, res) {
+    personagemModel.listar()
+        .then(
+            function(resultado) {
+                if (resultado.length > 0) {
+                    res.status(200).json(resultado);
+                } else {
+                    res.status(204).send("Nenhum resultado encontrado!")
+                }
+            }
+        ).catch(function (erro) {
+            console.log(erro);
+            console.log("Houve um erro ao buscar os personagens: ", erro.sqlMessage);
+            res.status(500).json(erro.sqlMessage);
+        });
+}
+
+function pesquisar(req, res) {
+    var pesquisa = req.body.pesquisa;
+
+    personagemModel.pesquisar(pesquisa)
+        .then(
+            function(resultado) {
+                if (resultado.length > 0) {
+                    res.status(200).json(resultado);
+                } else {
+                    res.status(204).send("Nenhum resultado encontrado!")
+                }
+            }
+        ).catch(function (erro) {
+            console.log(erro);
+            console.log("Houve um erro ao pesquisar o personagem: ", erro.sqlMessage);
+            res.status(500).json(erro.sqlMessage);
+        });
+} 
+
 module.exports = {
     pegarImagens,
+    listar,
+    pesquisar
 }
