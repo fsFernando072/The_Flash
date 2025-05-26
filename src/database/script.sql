@@ -102,7 +102,7 @@ INSERT INTO pergunta (numero, fkquiz, pergunta, alternativaA, alternativaB, alte
 INSERT INTO pergunta (numero, fkquiz, pergunta, alternativaA, alternativaB, alternativaC, alternativaD, alternativaE, alternativaCorreta) VALUES (2, 4, 'Qual velocista é uma versão maligna do próprio Barry?', 'Zoom', 'GodSpeed', 'Savitar', 'Reverse-Flash', 'Cobalto Azul', 'C');
 INSERT INTO pergunta (numero, fkquiz, pergunta, alternativaA, alternativaB, alternativaC, alternativaD, alternativaE, alternativaCorreta) VALUES (3, 4, 'Quem é o velocista vindo do futuro?', 'Wally West', 'Bart Allen', 'Jay Garrick', 'Barry Allen', 'Cisco Ramon', 'B');
 INSERT INTO pergunta (numero, fkquiz, pergunta, alternativaA, alternativaB, alternativaC, alternativaD, alternativaE, alternativaCorreta) VALUES (4, 4, 'Qual velocista também atende pelo nome de August Heart?', 'Zoom', 'Savitar', 'GodSpeed', 'Cicada', 'Despero', 'C');
-INSERT INTO pergunta (numero, fkquiz, pergunta, alternativaA, alternativaB, alternativaC, alternativaD, alternativaE, alternativaCorreta) VALUES (5, 4, 'Quem é Malcolm Thawne?', 'O irmão perdido de Barry Allen', 'O chefe da S.T.A.R. Labs', 'O pai de Barry', 'Um policial', 'Um cientista', 'A');
+INSERT INTO pergunta (numero, fkquiz, pergunta, alternativaA, alternativaB, alternativaC, alternativaD, alternativaE, alternativaCorreta) VALUES (5, 4, 'Qual velocista se chama Hunter Zolomon?', 'Zoom', 'Flash Reverso', 'Savitar', 'XS', 'Kid Flash', 'A');
  
 INSERT INTO resposta (fkusuario, fkpergunta, fkquiz, alternativaEscolhida) VALUES (1, 1, 1, 'A');
 INSERT INTO resposta (fkusuario, fkpergunta, fkquiz, alternativaEscolhida) VALUES (1, 2, 1, 'D');
