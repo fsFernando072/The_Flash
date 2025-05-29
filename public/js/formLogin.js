@@ -43,6 +43,7 @@ function verificar() {
                     sessionStorage.ID_USUARIO = json.id;
                     sessionStorage.CAMINHO_IMAGEM = json.caminhoImagem;
                     sessionStorage.SENHA = json.senha;
+                    sessionStorage.FK_FAVORITO = json.fkFavorito;
 
                     setTimeout(function () {
                         window.location = "./pages/painel.html";

@@ -226,8 +226,8 @@ main .card h2 {
 }
 
 .pagina-quiz .card > img:first-child {
-    width: 18rem;
-    height: 12rem;
+    width: 100%;
+    height: 14rem;
     object-fit: cover;
     border-radius: 1rem 1rem 0 0;
     object-position: 50% 0;
@@ -235,6 +235,15 @@ main .card h2 {
 
 .pagina-quiz .card p:first-of-type {
     padding: 0 1rem;
+}
+
+.personagens .card p:first-of-type {
+    padding: 0 1rem 2rem 1rem;
+}
+
+.personagens .card:hover {
+    cursor: auto;
+    transform: scale(100%);
 }
 
 .pagina-quiz .cards {
@@ -326,6 +335,12 @@ main .card h2 {
     width: 2rem;
     height: 2rem;
     filter: invert(100%);
+}
+
+.personagens .tipoQuiz {
+    right: 1.5rem;
+    top: 1.5rem;
+    cursor: pointer;
 }
 
 #modal-carregar img {

@@ -76,7 +76,7 @@ INSERT INTO usuario (nome, email, senha, caminhoImagem, fkpersonagemfavorito) VA
 
 INSERT INTO quiz (titulo, descricao, senha, caminhoImagem, fkusuario) VALUES ('Quiz do Flash', 'Teste seus conhecimentos sobre o Flash e seus aliados.', '', 'equipe/flash.jpeg', 1);
 INSERT INTO quiz (titulo, descricao, senha, caminhoImagem, fkusuario) VALUES ('Vilões de Central City', 'Descubra o quanto você conhece sobre os vilões do Flash.', 'senha123', 'viloes/flashReverso.jpeg', 2);
-INSERT INTO quiz (titulo, descricao, senha, caminhoImagem, fkusuario) VALUES ('Equipe S.T.A.R. Labs', 'Um quiz sobre os membros da equipe que ajuda o Flash.', '', 'equipe/cisco.jpeg', 3);
+INSERT INTO quiz (titulo, descricao, senha, caminhoImagem, fkusuario) VALUES ('Equipe S.T.A.R. Labs', 'Um quiz sobre os membros da equipe que ajudam o Flash.', '', 'equipe/cisco.jpeg', 3);
 INSERT INTO quiz (titulo, descricao, senha, caminhoImagem, fkusuario) VALUES ('Velocistas', 'Quiz sobre todos os velocistas do Arrowverse.', 'senha123', 'viloes/godspeed.jpeg', 4);
 
 
