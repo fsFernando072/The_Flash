@@ -16,4 +16,8 @@ router.put("/editar", function (req, res) {
     usuarioController.atualizarPerfil(req, res);
 });
 
+router.put("/favoritar", function (req, res) {
+    usuarioController.favoritarPersonagem(req, res);
+});
+
 module.exports = router;

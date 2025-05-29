@@ -59,7 +59,6 @@ main .card {
     background-color: var(--corCard);
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     transition: all 0.2s ease-in-out;
     cursor: pointer;
@@ -356,16 +355,6 @@ main .card h2 {
 
 .personagens .btn-favorito .estrela-vazia {
     filter: invert(100%);
-}
-
-.personagens .tipoQuiz {
-    position: absolute;
-    top: 1.5rem;
-    right: 3rem;
-    width: 2rem;
-    height: 2rem;
-    content: 'Teste';
-    background-color: #ce8f07;
 }
 
 #modal-carregar img {

@@ -15,4 +15,8 @@ router.post("/pesquisar", function (req, res) {
     personagemController.pesquisar(req, res);
 });
 
+router.get("/buscarFavorito/:idPersonagem", function(req, res) {
+    personagemController.buscarFavorito(req, res);
+});
+
 module.exports = router;

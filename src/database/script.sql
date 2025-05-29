@@ -61,13 +61,13 @@ INSERT INTO personagem (nome, descricao, categoria, caminhoImagem) VALUES ('Cait
 INSERT INTO personagem (nome, descricao, categoria, caminhoImagem) VALUES ('Harrison', 'Diversas versões do cientista Harrison Wells, aliado e mentor.', 'Equipe', 'equipe/harrison.jpeg');
 INSERT INTO personagem (nome, descricao, categoria, caminhoImagem) VALUES ('Flash Reverso', 'Eobard Thawne, inimigo mortal de Barry e viajante do tempo.', 'Vilões', 'viloes/flashReverso.jpeg');
 INSERT INTO personagem (nome, descricao, categoria, caminhoImagem) VALUES ('Zoom', 'Hunter Zolomon, velocista maligno que aterroriza Central City.', 'Vilões', 'viloes/zoom.jpeg');
-INSERT INTO personagem (nome, descricao, categoria, caminhoImagem) VALUES ('Savitar', 'Velocista divino e uma das maiores ameaças que Barry já enfrentou.', 'Vilões', 'viloes/savitar.jpeg');
+INSERT INTO personagem (nome, descricao, categoria, caminhoImagem) VALUES ('Savitar', 'Velocista divino e uma das maiores ameaças que Barry já enfrentou, é a versão maligna de Barry.', 'Vilões', 'viloes/savitar.jpeg');
 INSERT INTO personagem (nome, descricao, categoria, caminhoImagem) VALUES ('Devoe', 'Clifford DeVoe, o Pensador, vilão com inteligência super-humana.', 'Vilões', 'viloes/devoe.jpeg');
 INSERT INTO personagem (nome, descricao, categoria, caminhoImagem) VALUES ('Cicada', 'Orlin Dwyer, vilão motivado por tragédia pessoal, usa uma adaga meta-humana.', 'Vilões', 'viloes/cicada.jpeg');
 INSERT INTO personagem (nome, descricao, categoria, caminhoImagem) VALUES ('Hemoglobina', 'Ramsey Rosso, médico que se transforma em vilão após experiências com sangue.', 'Vilões', 'viloes/hemoglobina.jpeg');
 INSERT INTO personagem (nome, descricao, categoria, caminhoImagem) VALUES ('GodSpeed', 'August Heart, velocista com poderes similares ao Flash.', 'Vilões', 'viloes/godspeed.jpeg');
 INSERT INTO personagem (nome, descricao, categoria, caminhoImagem) VALUES ('Despero', 'Alienígena poderoso que tenta prevenir uma catástrofe futura.', 'Vilões', 'viloes/despero.jpeg');
-INSERT INTO personagem (nome, descricao, categoria, caminhoImagem) VALUES ('Cobalto Azul', 'Malcolm Thawne, irmão perdido de Barry, busca vingança.', 'Vilões', 'viloes/cobaltoAzul.jpeg');
+INSERT INTO personagem (nome, descricao, categoria, caminhoImagem) VALUES ('Cobalto Azul', 'Eddie Thawne, um ex policial e ex noivo de Iris West, tornou-se um vilão por vingança.', 'Vilões', 'viloes/cobaltoAzul.jpeg');
 
 INSERT INTO usuario (nome, email, senha, caminhoImagem, fkpersonagemfavorito) VALUES ('João Paulo', 'joao.paulo@gmail.com', 'senha123', 'equipe/flash.jpeg', 1);
 INSERT INTO usuario (nome, email, senha, caminhoImagem, fkpersonagemfavorito) VALUES ('Maria Souza', 'maria.souza@gmail.com', 'senha123', 'equipe/caitlin.jpeg', 3);
