@@ -312,6 +312,10 @@ main .card h2 {
     height: 1.5rem;
 }
 
+.personagens button:nth-of-type(2) img {
+    transform: rotateY(180deg);
+}
+
 .botoes-tipos .btn-selecionado {
     background-color: #ce8f07;
 }
@@ -337,10 +341,31 @@ main .card h2 {
     filter: invert(100%);
 }
 
-.personagens .tipoQuiz {
+.btn-favorito {
+    position: absolute;
     right: 1.5rem;
     top: 1.5rem;
+    width: 3rem;
+    height: 3rem;
+    padding: 0.6rem;
+    border-radius: 50%;
+    display: flex;
     cursor: pointer;
+    background-color: var(--corCard);
+}
+
+.personagens .btn-favorito .estrela-vazia {
+    filter: invert(100%);
+}
+
+.personagens .tipoQuiz {
+    position: absolute;
+    top: 1.5rem;
+    right: 3rem;
+    width: 2rem;
+    height: 2rem;
+    content: 'Teste';
+    background-color: #ce8f07;
 }
 
 #modal-carregar img {

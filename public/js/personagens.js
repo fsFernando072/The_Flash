@@ -22,10 +22,10 @@ function exibirPersonagem() {
                         console.log("Dados recebidos: ", JSON.stringify(resposta));
 
                         for (let i = 0; i < resposta.length; i++) {
-                            let icone = '<img src="../img/icones/estrelaImg.png" class="tipoQuiz" alt="Icone de estrela vazia">'
+                            let icone = '<img src="../img/icones/estrelaImg.png" class="estrela-vazia" alt="Icone de estrela vazia">'
                             
                             if (resposta[i].id == sessionStorage.FK_FAVORITO) {
-                                icone = '<img src="../img/icones/estrelaPreenchidaImg.png" class="tipoQuiz" style="filter: invert(0%);" alt="Icone de estrela preenchida">';
+                                icone = '<img src="../img/icones/estrelaPreenchidaImg.png" alt="Icone de estrela preenchida">';
                             }
 
                             if (resposta[i].categoria == 'Equipe') {
@@ -34,7 +34,9 @@ function exibirPersonagem() {
                                     <img src="../img/${resposta[i].caminhoImagem}" alt="Imagem do personagem ${resposta[i].nome}">
                                     <h2> ${resposta[i].nome} </h2>
                                     <p> ${resposta[i].descricao} </p>
-                                    ${icone}
+                                    <section class="btn-favorito">
+                                        ${icone}
+                                    </section>
                                 </article>`;
                             } else {
                                 temVilao = true;
@@ -42,7 +44,9 @@ function exibirPersonagem() {
                                     <img src="../img/${resposta[i].caminhoImagem}" alt="Imagem do personagem ${resposta[i].nome}">
                                     <h2> ${resposta[i].nome} </h2>
                                     <p> ${resposta[i].descricao} </p>
-                                    ${icone}
+                                    <section class="btn-favorito">
+                                        ${icone}
+                                    </section>
                                 </article>`;
                             }
                         }
