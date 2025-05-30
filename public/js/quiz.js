@@ -18,9 +18,9 @@ function exibirQuiz() {
 
             if (resposta.ok) {
                 if (resposta.statusText == 'No Content') {
-                    meusQuizzes.innerHTML = '<p> Você não possui nenhum quiz </p>';
-                    privado.innerHTML = '<p> Não há nenhum quiz privado </p>';
-                    publico.innerHTML = '<p> Não há nenhum quiz público </p>';
+                    meusQuizzes.innerHTML = '<p> Você não possui nenhum quiz. </p>';
+                    privado.innerHTML = '<p> Não há nenhum quiz privado. </p>';
+                    publico.innerHTML = '<p> Não há nenhum quiz público. </p>';
                 } else {
                     resposta.json().then(function (resposta) {
                         console.log("Dados recebidos: ", JSON.stringify(resposta));
@@ -63,15 +63,15 @@ function exibirQuiz() {
                         }
 
                         if (!temPublico) {
-                            frasePublico = '<p> Não há nenhum quiz público </p>';
+                            frasePublico = '<p> Não há nenhum quiz público. </p>';
                         }
 
                         if (!temPrivado) {
-                            frasePrivado = '<p> Não há nenhum quiz privado </p>';
+                            frasePrivado = '<p> Não há nenhum quiz privado. </p>';
                         }
 
                         if (!temMeusQuizzes) {
-                            fraseMeusQuizzes = '<p> Você não possui nenhum quiz </p>';
+                            fraseMeusQuizzes = '<p> Você não possui nenhum quiz. </p>';
                         }
 
                         meusQuizzes.innerHTML = fraseMeusQuizzes;

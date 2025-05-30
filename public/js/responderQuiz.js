@@ -1,8 +1,6 @@
 const carrossel = document.querySelector('.carrossel');
 const respostaModal = document.querySelector('#respostas');
 
-let senhaQuiz = '';
-
 function pegarQuiz() {
     let idQuiz = sessionStorage.ID_QUIZ;
 
@@ -51,7 +49,6 @@ function exibirPerguntas(quiz) {
 
                                 conteudo += `</section></section>`;
                             } else {
-                                senhaQuiz = quiz[0].senhaQuiz;
 
                                 conteudo += ` <label for="senha" id="label-senha"> Senha </label>`
                                 conteudo += `<input type="password" name="senha" id="senha" placeholder="Digite a senha do quiz">`;
@@ -110,15 +107,37 @@ function exibirPerguntas(quiz) {
 }
 
 function validarSenha() {
+    let idQuiz = sessionStorage.ID_QUIZ;
     let senha = document.querySelector('#senha').value;
 
-    if (senha == senhaQuiz) {
-        avancar(1);
-    } else {
-        modal.style.display = 'flex';
-        respostaModal.innerHTML = '<img src="../img/icones/erroImg.png" alt="Icone de erro" class="iconesGra">';
-        respostaModal.innerHTML += '<p> <img src="../img/icones/erroImg.png" alt="Icone de erro" class="iconesPeq"> A senha está incorreta </p>';
-    }
+    fetch("/quiz/validarSenha", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            idQuiz: idQuiz,
+            senha: senha
+        })
+    })
+        .then(function (resposta) {
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+                if (resposta.statusText == 'No Content') {
+                    modal.style.display = 'flex';
+                    respostaModal.innerHTML = '<img src="../img/icones/erroImg.png" alt="Icone de erro" class="iconesGra">';
+                    respostaModal.innerHTML += '<p> <img src="../img/icones/erroImg.png" alt="Icone de erro" class="iconesPeq"> A senha está incorreta </p>';
+                } else {
+                    avancar(1);
+                }
+            } else {
+                throw "Houve um erro ao tentar validar a senha!";
+            }
+        })
+        .catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
 }
 
 function exibirRespostas(perguntas) {
@@ -139,7 +158,7 @@ function exibirRespostas(perguntas) {
                         let vetorQtd = [];
 
                         for (let i = 0; i < 5; i++) {
-                            vetorQtd.push({Certas: 0, Erradas: 0});
+                            vetorQtd.push({ Certas: 0, Erradas: 0 });
                         }
 
                         for (let i = 0; i < resposta.length; i++) {
@@ -223,7 +242,6 @@ function plotarGrafico(resposta, numero) {
     dados.datasets[0].data.push(resposta.Certas);
     dados.datasets[0].data.push(resposta.Erradas);
 
-    // Criando estrutura para plotar gráfico - config
     let config = {
         type: 'pie',
         data: dados,

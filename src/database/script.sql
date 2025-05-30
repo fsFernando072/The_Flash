@@ -13,7 +13,7 @@ CREATE TABLE usuario (
 	id INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(80) NOT NULL,
     email VARCHAR(60) NOT NULL,
-    senha VARCHAR(60) NOT NULL,
+    senha VARCHAR(256) NOT NULL,
     caminhoImagem VARCHAR(80) NOT NULL,
     fkpersonagemfavorito INT,
     UNIQUE KEY (email),
@@ -24,7 +24,7 @@ CREATE TABLE quiz (
     id INT PRIMARY KEY AUTO_INCREMENT,
     titulo VARCHAR(60) NOT NULL,
     descricao VARCHAR(200) NOT NULL,
-    senha VARCHAR(60),
+    senha VARCHAR(256),
     caminhoImagem VARCHAR(80) NOT NULL,
     fkusuario INT NOT NULL,
     FOREIGN KEY (fkusuario) REFERENCES usuario (id)
@@ -69,15 +69,15 @@ INSERT INTO personagem (nome, descricao, categoria, caminhoImagem) VALUES ('GodS
 INSERT INTO personagem (nome, descricao, categoria, caminhoImagem) VALUES ('Despero', 'Alienígena poderoso que tenta prevenir uma catástrofe futura.', 'Vilões', 'viloes/despero.jpeg');
 INSERT INTO personagem (nome, descricao, categoria, caminhoImagem) VALUES ('Cobalto Azul', 'Eddie Thawne, um ex policial e ex noivo de Iris West, tornou-se um vilão por vingança.', 'Vilões', 'viloes/cobaltoAzul.jpeg');
 
-INSERT INTO usuario (nome, email, senha, caminhoImagem, fkpersonagemfavorito) VALUES ('João Paulo', 'joao.paulo@gmail.com', 'senha123', 'equipe/flash.jpeg', 1);
-INSERT INTO usuario (nome, email, senha, caminhoImagem, fkpersonagemfavorito) VALUES ('Maria Souza', 'maria.souza@gmail.com', 'senha123', 'equipe/caitlin.jpeg', 3);
-INSERT INTO usuario (nome, email, senha, caminhoImagem, fkpersonagemfavorito) VALUES ('Carlos Lima', 'carlos.lima@gmail.com', 'senha123', 'equipe/cisco.jpeg', 2);
-INSERT INTO usuario (nome, email, senha, caminhoImagem, fkpersonagemfavorito) VALUES ('Ana Paula', 'ana.paula@gmail.com', 'senha123', 'viloes/zoom.jpeg', 6);
+INSERT INTO usuario (nome, email, senha, caminhoImagem, fkpersonagemfavorito) VALUES ('João Paulo', 'joao.paulo@gmail.com', SHA2('senha123', 256), 'equipe/flash.jpeg', 1);
+INSERT INTO usuario (nome, email, senha, caminhoImagem, fkpersonagemfavorito) VALUES ('Maria Souza', 'maria.souza@gmail.com', SHA2('senha123', 256), 'equipe/caitlin.jpeg', 3);
+INSERT INTO usuario (nome, email, senha, caminhoImagem, fkpersonagemfavorito) VALUES ('Carlos Lima', 'carlos.lima@gmail.com', SHA2('senha123', 256), 'equipe/cisco.jpeg', 2);
+INSERT INTO usuario (nome, email, senha, caminhoImagem, fkpersonagemfavorito) VALUES ('Ana Paula', 'ana.paula@gmail.com', SHA2('senha123', 256), 'viloes/zoom.jpeg', 6);
 
 INSERT INTO quiz (titulo, descricao, senha, caminhoImagem, fkusuario) VALUES ('Quiz do Flash', 'Teste seus conhecimentos sobre o Flash e seus aliados.', '', 'equipe/flash.jpeg', 1);
-INSERT INTO quiz (titulo, descricao, senha, caminhoImagem, fkusuario) VALUES ('Vilões de Central City', 'Descubra o quanto você conhece sobre os vilões do Flash.', 'senha123', 'viloes/flashReverso.jpeg', 2);
+INSERT INTO quiz (titulo, descricao, senha, caminhoImagem, fkusuario) VALUES ('Vilões de Central City', 'Descubra o quanto você conhece sobre os vilões do Flash.', SHA2('senha123', 256), 'viloes/flashReverso.jpeg', 2);
 INSERT INTO quiz (titulo, descricao, senha, caminhoImagem, fkusuario) VALUES ('Equipe S.T.A.R. Labs', 'Um quiz sobre os membros da equipe que ajudam o Flash.', '', 'equipe/cisco.jpeg', 3);
-INSERT INTO quiz (titulo, descricao, senha, caminhoImagem, fkusuario) VALUES ('Velocistas', 'Quiz sobre todos os velocistas do Arrowverse.', 'senha123', 'viloes/godspeed.jpeg', 4);
+INSERT INTO quiz (titulo, descricao, senha, caminhoImagem, fkusuario) VALUES ('Velocistas', 'Quiz sobre todos os velocistas do Arrowverse.', SHA2('senha123', 256), 'viloes/godspeed.jpeg', 4);
 
 
 INSERT INTO pergunta (numero, fkquiz, pergunta, alternativaA, alternativaB, alternativaC, alternativaD, alternativaE, alternativaCorreta) VALUES (1, 1, 'Qual o nome verdadeiro do Flash?', 'Barry Allen', 'Wally West', 'Jay Garrick', 'Bart Allen', 'Eddie Thawne', 'A');

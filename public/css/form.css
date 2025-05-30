@@ -282,11 +282,17 @@ button {
     background-color: var(--corCard);
     padding: 1rem;
     width: 60%;
+    border: none;
     border-bottom: 0.2rem solid var(--corBotao);
     color: var(--corTexto);
     outline: none;
     cursor: pointer;
     margin-bottom: 1rem;
+}
+
+.addquiz select option {
+    padding: 1rem;
+    cursor: pointer;
 }
 
 .addquiz #descricao {

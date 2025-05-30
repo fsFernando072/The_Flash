@@ -23,4 +23,8 @@ router.post("/pesquisar", function (req, res) {
     quizController.pesquisar(req, res);
 })
 
+router.post("/validarSenha", function (req, res) {
+    quizController.validarSenha(req, res);
+})
+
 module.exports = router;

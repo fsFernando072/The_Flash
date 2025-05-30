@@ -3,11 +3,16 @@ var database = require("../database/config")
 function cadastrar(titulo, descricao, senha, caminhoImagem, id) {
     console.log("ACESSEI O QUIZ MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():", titulo, descricao, senha, caminhoImagem, id);
     
-    // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
-    //  e na ordem de inserção dos dados.
-    var instrucaoSql = `
-        INSERT INTO quiz (titulo, descricao, senha, caminhoImagem, fkusuario) VALUES ('${titulo}', '${descricao}', '${senha}', '${caminhoImagem}', ${id});
-    `;
+    if (senha == '') {
+        var instrucaoSql = `
+            INSERT INTO quiz (titulo, descricao, senha, caminhoImagem, fkusuario) VALUES ('${titulo}', '${descricao}', '${senha}', '${caminhoImagem}', ${id});
+        `;
+    } else {
+        var instrucaoSql = `
+            INSERT INTO quiz (titulo, descricao, senha, caminhoImagem, fkusuario) VALUES ('${titulo}', '${descricao}', SHA2('${senha}', 256), '${caminhoImagem}', ${id});
+        `;
+    }
+
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
@@ -81,10 +86,21 @@ function pesquisar(pesquisa) {
     return database.executar(instrucaoSql);
 }
 
+function validarSenha(senha, id) {
+    console.log("ACESSEI O QUIZ MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function validarSenha(): ");
+
+    var instrucaoSql = `
+        SELECT id FROM quiz WHERE id = ${id} AND senha = SHA2('${senha}', 256);
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
     cadastrar,
     listar, 
     listarUltimo,
     listarSelecionado,
-    pesquisar
+    pesquisar,
+    validarSenha
 };
