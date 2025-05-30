@@ -45,12 +45,12 @@ function alterarImagem() {
 
                     console.log(fotoPerfil.src);
 
-                    if (fotoPerfil.src == `http://localhost:3333/img/icones/usuarioPadraoImg.png`) {
+                    if (fotoPerfil.src.includes(`img/icones/usuarioPadraoImg.png`)) {
                         frase = '<img src="../img/icones/usuarioPadraoImg.png" alt="Imagem padrão usuário" class="selecionado">';
                     }
 
                     for (let i = 0; i < resposta.length; i++) {
-                        if (fotoPerfil.src == `http://localhost:3333/img/${resposta[i].caminhoImagem}`) {
+                        if (fotoPerfil.src.includes(`img/${resposta[i].caminhoImagem}`)) {
                             frase += `<img src="../img/${resposta[i].caminhoImagem}" alt="Imagem dos Personagens" class="selecionado">`;
                         } else {
                             frase += `<img src="../img/${resposta[i].caminhoImagem}" alt="Imagem dos Personagens">`;
@@ -82,7 +82,8 @@ function editarPerfil() {
     let email = document.querySelector('#email').value;
     let novaSenha = document.querySelector('#senha').value;
     let caminhoImagem = document.querySelector('#foto_perfil').src;
-    caminhoImagem = caminhoImagem.replace('http://localhost:3333/img/', '');
+    let indice = caminhoImagem.indexOf('img/');
+    caminhoImagem = caminhoImagem.substring(indice + 4, caminhoImagem.length);
     let id = sessionStorage.ID_USUARIO;
 
     let erros = ``;

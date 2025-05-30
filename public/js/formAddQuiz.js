@@ -135,7 +135,8 @@ async function cadastrarQuiz() {
     let tipo = document.querySelector('#tipo').value;
     let senha = document.querySelector('#senha').value;
     let caminhoImagem = document.querySelector('#foto_quiz').src;
-    caminhoImagem = caminhoImagem.replace('http://localhost:3333/img/', '');
+    let indice = caminhoImagem.indexOf('img/');
+    caminhoImagem = caminhoImagem.substring(indice + 4, caminhoImagem.length);
 
     let id = sessionStorage.ID_USUARIO;
 
@@ -306,12 +307,12 @@ function alterarImagem() {
                     let imagens = document.getElementById("imagens");
                     let frase = '<img src="../img/fundo/hall.jpeg" alt="Imagem Star Labs">';
 
-                    if (fotoQuiz.src == `http://localhost:3333/img/fundo/hall.jpeg`) {
+                    if (fotoQuiz.src.includes(`img/fundo/hall.jpeg`)) {
                         frase = '<img src="../img/fundo/hall.jpeg" alt="Imagem Star Labs" class="selecionado">';
                     }
 
                     for (let i = 0; i < resposta.length; i++) {
-                        if (fotoQuiz.src == `http://localhost:3333/img/${resposta[i].caminhoImagem}`) {
+                        if (fotoQuiz.src.includes(`img/${resposta[i].caminhoImagem}`)) {
                             frase += `<img src="../img/${resposta[i].caminhoImagem}" alt="Imagem dos Personagens" class="selecionado">`;
                         } else {
                             frase += `<img src="../img/${resposta[i].caminhoImagem}" alt="Imagem dos Personagens">`;

@@ -143,7 +143,7 @@ function favoritar(idPersonagem, indice, tipo) {
 
     let imagensFavorito = document.querySelectorAll(`.personagem-${tipo} img`);
 
-    if (imagensFavorito[indice].src == 'http://localhost:3333/img/icones/estrelaPreenchidaImg.png') {
+    if (imagensFavorito[indice].src.includes('icones/estrelaPreenchidaImg.png')) {
         idPersonagem = null;
     }
 
@@ -165,15 +165,14 @@ function favoritar(idPersonagem, indice, tipo) {
                 favorito.innerHTML = '<p> Você não possui nenhum personagem favorito. </p>';
                 tipo = 'padrao';
                 indice = -1;
+                imagensFavorito = document.querySelectorAll(`.personagem-${tipo} img`);
             }
 
-            let imagensFavorito = document.querySelectorAll(`.personagem-${tipo} img`);
-
             for (let i = 0; i < imagensFavorito.length; i++) {
-                if (imagensFavorito[i].src == 'http://localhost:3333/img/icones/estrelaImg.png' && i == indice) {
+                if (imagensFavorito[i].src.includes('img/icones/estrelaImg.png') && i == indice) {
                     imagensFavorito[i].src = '../img/icones/estrelaPreenchidaImg.png';
                     imagensFavorito[i].style.filter = 'invert(0%)';
-                } else if (imagensFavorito[i].src == 'http://localhost:3333/img/icones/estrelaPreenchidaImg.png') {
+                } else if (imagensFavorito[i].src.includes('img/icones/estrelaPreenchidaImg.png')) {
                     imagensFavorito[i].src = '../img/icones/estrelaImg.png';
                     imagensFavorito[i].style.filter = 'invert(100%)';
                 }
