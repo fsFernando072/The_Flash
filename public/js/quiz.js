@@ -58,6 +58,9 @@ function exibirQuiz() {
                                     <p> ${resposta[i].descricao} </p>
                                     <p class="usuario"> <img src="../img/${resposta[i].imgUsu}" alt="Imagem do Usuário" class="img-usu"> ${resposta[i].nome} </p>
                                     ${icone}
+                                    <section class="btn-excluir" onclick="excluirQuiz(${resposta[i].id}, event)">
+                                        <img src="../img/icones/lixeiraImg.png" alt="Icone de lixeira">
+                                    </section>
                                 </article>`;
                             } 
                         }
@@ -183,6 +186,18 @@ function pesquisarQuiz() {
         .catch(function (resposta) {
             console.log(`#ERRO: ${resposta}`);
         });
+}
+
+function excluirQuiz(idQuiz, e) {
+    e.stopPropagation();
+
+    let modalExcluir = document.querySelector('#modal-excluir');
+    modalExcluir.style.display = 'flex';
+}
+
+function fecharExcluir() {
+    let modalExcluir = document.querySelector('#modal-excluir');
+    modalExcluir.style.display = 'none';
 }
 
 function fazerQuiz(idQuiz) {

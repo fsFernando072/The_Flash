@@ -119,6 +119,29 @@
             </h1>
             <section class="cards"></section>
         </section>
+
+        <section class="modal" id="modal-resposta">
+            <section class="modal-conteudo">
+                <button class="fechar" id="fechar">
+                    <img src="../img/icones/fecharImg.png" alt="Icone de Fechar">
+                </button>
+
+                <section id="respostas">
+                </section>
+            </section>
+        </section>
+
+        <section class="modal" id="modal-excluir">
+            <section class="modal-conteudo">
+                <button class="fechar" id="fecharExcluir" onclick="fecharExcluir()">
+                    <img src="../img/icones/fecharImg.png" alt="Icone de Fechar">
+                </button>
+
+                <section class="excluir">
+                    <img src="../img/icones/lixeiraImg.png" alt="Icone de lixeira" class="iconesGra">
+                </section>
+            </section>
+        </section>
     </main>
 
     <footer>
@@ -129,4 +152,5 @@
 </body>
 
 <script src="../js/quiz.js"></script>
+<script src="../js/modal.js"></script>
 </html>
