@@ -1,4 +1,5 @@
-var database = require("../database/config")
+var database = require("../database/config");
+var quizModel = require("./quizModel");
 
 function autenticar(email, senha) {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function entrar(): ", email, senha)
@@ -40,9 +41,42 @@ function favoritarPersonagem(idPersonagem, idUsuario) {
     return database.executar(instrucaoSql);
 }
 
+async function excluir(id) {
+    console.log("ACESSEI O USUÁRIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function excluir(): ");
+
+    await deletarRespostas(id);
+
+    let quizzes = await listarQuizzes(id);
+
+    for (let i = 0; i < quizzes.length; i++) {
+        await quizModel.excluir(quizzes[i].id);
+    }
+
+    var instrucaoSql = `
+        DELETE FROM usuario
+        WHERE id = ${id};
+    `;
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function listarQuizzes(idUsu) {
+    var instrucaoSql = `SELECT * FROM quiz WHERE fkusuario = ${idUsu};`;
+    
+    return database.executar(instrucaoSql);
+}
+
+function deletarRespostas(idUsu) {
+    var instrucaoSql = `DELETE FROM resposta WHERE fkusuario = ${idUsu};`;
+    
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
     autenticar,
     cadastrar,
     atualizarPerfil,
-    favoritarPersonagem
+    favoritarPersonagem,
+    excluir
 };

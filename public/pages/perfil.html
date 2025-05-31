@@ -93,7 +93,10 @@
                 </label>
                 <input type="password" name="senha" id="senha" placeholder="Digite sua nova Senha">
 
-                <button class="botaoLink" id="botaoEditar"> Editar </button>
+                <section>
+                    <button class="botaoLink" id="botaoEditar"> Editar </button>
+                    <button class="botaoLink" id="botaoExcluir" onclick="excluir()"> Excluir </button>
+                </section>
             </section>
 
             <section class="modal" id="modal-resposta">
@@ -114,6 +117,18 @@
                     </button>
 
                     <section id="imagens">
+
+                    </section>
+                </section>
+            </section>
+
+            <section class="modal" id="modal-excluir">
+                <section class="modal-conteudo">
+                    <button class="fechar" id="fecharExcluir" onclick="fecharExcluir()">
+                        <img src="../img/icones/fecharImg.png" alt="Icone de Fechar">
+                    </button>
+
+                    <section class="excluir">
 
                     </section>
                 </section>

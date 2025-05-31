@@ -118,9 +118,28 @@ function favoritarPersonagem(req, res) {
         );
 }
 
+function excluir (req, res) {
+    var id = req.body.id;
+
+    usuarioModel.excluir(id)
+        .then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        )
+        .catch(
+            function (erro) {
+                console.log(erro);
+                console.log("\nHouve um erro ao excluir o usuário! Erro: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+
 module.exports = {
     autenticar,
     cadastrar,
     atualizarPerfil,
     favoritarPersonagem,
+    excluir
 }

@@ -124,6 +124,8 @@ header .container nav a.links:hover {
     border-radius: 0.2rem;
     border: 0.1rem solid var(--corBotao);
     transition: all 0.2s ease-in-out;
+    background: none;
+    cursor: pointer;
 }
 
 .botaoLink:hover {

@@ -96,11 +96,44 @@ function validarSenha(senha, id) {
     return database.executar(instrucaoSql);
 }
 
+async function excluir(id) {
+    await excluirResposta(id);
+    await excluirPergunta(id);
+
+    console.log("ACESSEI O QUIZ MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function excluir(): ");
+
+    var instrucaoSql = `
+        DELETE FROM quiz
+        WHERE id = ${id};
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function excluirResposta(id) {
+    var instrucaoSql = `
+        DELETE FROM resposta
+        WHERE fkquiz = ${id};
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function excluirPergunta(id) {
+     var instrucaoSql = `
+        DELETE FROM pergunta
+        WHERE fkquiz = ${id};
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
     cadastrar,
     listar, 
     listarUltimo,
     listarSelecionado,
     pesquisar,
-    validarSenha
+    validarSenha,
+    excluir
 };

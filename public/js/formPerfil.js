@@ -132,7 +132,7 @@ function editarPerfil() {
     
                 respostaModal.innerHTML = '<img src="../img/icones/certoImg.png" alt="Icone de certo" class="iconesGra">';
                 respostaModal.innerHTML +=
-                    "<p> Alteração do perfil realizada com sucesso! Recarregando a página </p>";
+                    "<p> Alteração do perfil realizada com sucesso! Recarregando a página... </p>";
 
                 sessionStorage.EMAIL_USUARIO = email;
                 sessionStorage.NOME_USUARIO = nome;
@@ -148,9 +148,70 @@ function editarPerfil() {
                 throw ("Houve um erro ao tentar realizar o update! Código da resposta: " + resposta.status);
             }
         }).catch(function (resposta) {
+            fecharCarregar();
             console.log(`#ERRO: ${resposta}`);
         });
     }
+}
+
+function excluir() {
+    let modalExcluir = document.querySelector('#modal-excluir');
+    modalExcluir.style.display = 'flex';
+
+    let secaoExcluir = modalExcluir.querySelector('.excluir');
+
+    var frase = `<section class="img-excluir"> 
+                    <img src="../img/icones/lixeiraImg.png" alt="Icone de lixeira" class="iconesGra"> 
+                </section>`;
+    frase += '<h1> Você tem certeza que deseja excluir sua conta? </h1>';
+    frase += `<p> Esta ação não é reversível. </p>`;
+    frase += `<section class="botoes-modal-excluir">
+        <button onclick="fecharExcluir()" class="botaoLink"> Cancelar </button>
+        <button onclick="deletar()" class="botaoLink"> Excluir </button>
+    </section>`;
+
+    secaoExcluir.innerHTML = frase;
+}
+
+function deletar() {
+    fecharExcluir();
+    carregar();
+
+    let id = sessionStorage.ID_USUARIO;
+    console.log(id);
+
+    fetch("/usuarios/excluir", {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            id: id
+        }),
+    })
+        .then(function (resposta) {
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+                fecharCarregar();
+                modal.style.display = 'flex';
+
+                respostaModal.innerHTML = '<img src="../img/icones/certoImg.png" alt="Icone de certo" class="iconesGra">';
+                respostaModal.innerHTML +=
+                    "<p> Perfil deletado com sucesso! Redirecionando para a página inicial... </p>";
+
+                setTimeout(() => {
+                    window.location = "../index.html";
+                }, "2000");
+            } else {
+                fecharCarregar();
+                throw "Houve um erro ao tentar realizar a exclusão!";
+            }
+        })
+        .catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+            fecharCarregar();
+        });
 }
 
 let novaSenha = document.querySelector('#senha');

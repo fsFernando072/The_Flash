@@ -16,3 +16,8 @@ function fecharCarregar() {
     var modalCarregar = document.querySelector('#modal-carregar');
     modalCarregar.style.display = 'none';
 }
+
+function fecharExcluir() {
+    let modalExcluir = document.querySelector('#modal-excluir');
+    modalExcluir.style.display = 'none';
+}

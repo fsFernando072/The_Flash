@@ -50,8 +50,7 @@ CREATE TABLE resposta (
     fkquiz INT NOT NULL,
     alternativaEscolhida CHAR(1) NOT NULL,
     FOREIGN KEY (fkusuario) REFERENCES usuario (id),
-    FOREIGN KEY (fkpergunta) REFERENCES pergunta (numero),
-    FOREIGN KEY (fkquiz) REFERENCES pergunta (fkquiz),
+    FOREIGN KEY (fkpergunta, fkquiz) REFERENCES pergunta (numero, fkquiz),
     PRIMARY KEY (fkusuario, fkpergunta, fkquiz)
 );
 

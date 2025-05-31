@@ -60,7 +60,7 @@ function verificar() {
                     fecharCarregar()
                     modal.style.display = 'flex';
                     respostaModal.innerHTML = '<img src="img/icones/erroImg.png" alt="Icone de erro" class="iconesGra">';
-                    respostaModal.innerHTML += texto;
+                    respostaModal.innerHTML += `<p> <img src="img/icones/erroImg.png" alt="Icone de erro" class="iconesPeq"> ${texto} </p>`;
                 });
             }
 

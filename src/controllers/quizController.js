@@ -131,11 +131,30 @@ function validarSenha(req, res) {
         });
 }
 
+function excluir (req, res) {
+    var id = req.body.idQuiz;
+
+    quizModel.excluir(id)
+        .then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        )
+        .catch(
+            function (erro) {
+                console.log(erro);
+                console.log("\nHouve um erro ao excluir o quiz! Erro: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+
 module.exports = {
     cadastrar,
     listarUltimo,
     listar,
     listarSelecionado,
     pesquisar,
-    validarSenha
+    validarSenha,
+    excluir
 }

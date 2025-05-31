@@ -27,4 +27,8 @@ router.post("/validarSenha", function (req, res) {
     quizController.validarSenha(req, res);
 })
 
+router.delete("/excluir", function (req, res) {
+    quizController.excluir(req, res);
+})
+
 module.exports = router;

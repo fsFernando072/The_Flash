@@ -1,3 +1,5 @@
+const respostaModal = document.querySelector('#respostas');
+
 function exibirQuiz() {
     let publico = document.querySelector('#publicos .cards');
     let privado = document.querySelector('#privados .cards');
@@ -28,7 +30,7 @@ function exibirQuiz() {
                         for (let i = 0; i < resposta.length; i++) {
                             quizzes[i] = resposta[i];
                             let icone = '<img src="../img/icones/semSenhaImg.png" class="tipoQuiz" alt="Icone de quizzes públicos">'
-                            
+
                             if (resposta[i].senhaQuiz == '') {
                                 temPublico = true;
                                 frasePublico += `<article class="card" onclick="fazerQuiz(${resposta[i].id})">
@@ -62,7 +64,7 @@ function exibirQuiz() {
                                         <img src="../img/icones/lixeiraImg.png" alt="Icone de lixeira">
                                     </section>
                                 </article>`;
-                            } 
+                            }
                         }
 
                         if (!temPublico) {
@@ -94,7 +96,7 @@ function exibirQuiz() {
 function exibir(tipo) {
     let tipoQuiz = document.querySelector(`#${tipo}`);
     let botoesTipos = document.querySelectorAll('.botoes-tipos button');
-    
+
     tipoQuiz.style.display = 'block';
 
     let indice = 0;
@@ -121,7 +123,7 @@ function exibir(tipo) {
             botoesTipos[i].classList.toggle('btn-selecionado');
         }
     }
- }
+}
 
 function pesquisarQuiz() {
     let publico = document.querySelector('#publicos');
@@ -193,11 +195,60 @@ function excluirQuiz(idQuiz, e) {
 
     let modalExcluir = document.querySelector('#modal-excluir');
     modalExcluir.style.display = 'flex';
+
+    let secaoExcluir = modalExcluir.querySelector('.excluir');
+
+    var frase = `<section class="img-excluir"> 
+                    <img src="../img/icones/lixeiraImg.png" alt="Icone de lixeira" class="iconesGra"> 
+                </section>`;
+    frase += '<h1> Você tem certeza que deseja excluir o quiz? </h1>';
+    frase += `<p> Esta ação não é reversível. </p>`;
+    frase += `<section class="botoes-modal-excluir">
+        <button onclick="fecharExcluir()" class="botaoLink"> Cancelar </button>
+        <button onclick="deletarQuiz(${idQuiz})" class="botaoLink"> Excluir </button>
+    </section>`;
+
+    secaoExcluir.innerHTML = frase;
 }
 
-function fecharExcluir() {
-    let modalExcluir = document.querySelector('#modal-excluir');
-    modalExcluir.style.display = 'none';
+function deletarQuiz(idQuiz) {
+    fecharExcluir();
+    carregar();
+
+    fetch("/quiz/excluir", {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            idQuiz: idQuiz
+        }),
+    })
+        .then(function (resposta) {
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+                fecharCarregar();
+                modal.style.display = 'flex';
+
+                respostaModal.innerHTML = '<img src="../img/icones/certoImg.png" alt="Icone de certo" class="iconesGra">';
+                respostaModal.innerHTML +=
+                    "<p> Quiz deletado com sucesso! Recarregando a página... </p>";
+
+                setTimeout(() => {
+                    window.location = "quiz.html";
+                }, "2000");
+            } else {
+                fecharCarregar();
+                throw "Houve um erro ao tentar realizar a exclusão!";
+            }
+        })
+        .catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+            fecharCarregar();
+        });
+
+
 }
 
 function fazerQuiz(idQuiz) {

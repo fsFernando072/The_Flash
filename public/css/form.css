@@ -69,11 +69,6 @@ label {
     text-align: left;
 }
 
-button {
-    background: none;
-    cursor: pointer;
-}
-
 .login label {
     display: flex;
     justify-content: flex-start;
@@ -123,15 +118,9 @@ button {
 }
 
 #modal-perfil .modal-conteudo, 
-#modal-quiz .modal-conteudo,
-#modal-excluir .modal-conteudo {
-    position: relative;
+#modal-quiz .modal-conteudo {
     width: 80%;
     min-height: 70%;
-    display: flex;
-    background-color: var(--corCard);
-    border-radius: 2rem;
-    padding: 3rem 2.5rem;
 }
 
 #modal-perfil .modal-conteudo #imagens, 
