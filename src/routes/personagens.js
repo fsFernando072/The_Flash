@@ -19,4 +19,8 @@ router.get("/buscarFavorito/:idPersonagem", function(req, res) {
     personagemController.buscarFavorito(req, res);
 });
 
+router.get("/listarFavoritos", function (req, res) {
+    personagemController.listarFavoritos(req, res);
+});
+
 module.exports = router;

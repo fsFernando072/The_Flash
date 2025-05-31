@@ -11,4 +11,8 @@ router.post("/cadastrar", function (req, res) {
     respostaController.cadastrarResposta(req, res);
 })
 
+router.get("/listarRanking", function (req, res) {
+    respostaController.listarRanking(req, res);
+})
+
 module.exports = router;

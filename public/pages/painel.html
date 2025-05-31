@@ -10,10 +10,11 @@
     <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" href="../css/footer.css">
     <link rel="shortcut icon" href="../img/logo/logoCurta.png" type="image/x-icon">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="../js/sessao.js"></script>
 </head>
 
-<body onload="validarSessao()">
+<body onload="validarSessao(), buscarFavoritos(), listarRanking()">
     <header>
         <section class="container">
             <nav class="menu">
@@ -52,7 +53,7 @@
                 </ul>
             </nav>
 
-            <a href="home.html">
+            <a href="painel.html">
                 <img src="../img/logo/logoExtensa.png" alt="Logo de The Flash" class="logo">
             </a>
 
@@ -62,22 +63,49 @@
         </section>
     </header>
 
-    <main>
-        <section id="flash" class="container pagina">
-            <h1 class="titulo"> O Flash </h1>
-            <section class="conteudo">
-                <section class="descricao">
-                    <p> "Meu nome é Barry Allen e eu sou o homem mais rápido do Mundo! Para o mundo lá fora eu sou
-                        apenas um cientista forense normal, mas secretamente com ajuda de alguns amigos, eu luto contra
-                        o crime e encontro outros meta-humanos como eu. E eu sou o Flash!" </p>
+   <main class="painel">
+        <section class="container inicio">
+            <h1 class="titulo"> Painel </h1>
 
-                    <a href="login.html" class="botaoLink"> Ver Mais </a>
-                </section>
+            <section class="botoes-tipos">
+                <button onclick="exibir('quizzes')" class="btn-selecionado">
+                    <img src="../img/icones/quizImg.png" alt="Icone de quiz">
+                    Quizzes
+                </button>
 
-                <img src="../img/equipe/flash.jpeg" alt="Imagem do Flash">
+                <button onclick="exibir('personagens')">
+                    <img src="../img/icones/estrelaImg.png" alt="Icone de favorito">
+                    Personagens
+                </button>
+
+                <button onclick="exibir('ranking')">
+                    <img src="../img/icones/trofeuImg.png" alt="Icone de troféu">
+                    Ranking
+                </button>
             </section>
         </section>
+
+        <section class="container" id="quizzes">
+            <canvas id=""></canvas>
+        </section>
+
+        <section class="container" id="personagens">
+            <canvas id="dashboard-favoritos"></canvas>
+        </section>
+
+        <section class="container" id="ranking">
+            <table>
+                <tr> 
+                    <th> Classificação </th>
+                    <th> Usuário </th>
+                    <th> Acertos </th>
+                    <th> Total Questões </th> 
+                </tr>
+
+            </table>
+        </section>
     </main>
+
 
     <footer>
         <section class="container">
@@ -86,4 +114,5 @@
     </footer>
 </body>
 
+<script src="../js/painel.js"></script>
 </html>

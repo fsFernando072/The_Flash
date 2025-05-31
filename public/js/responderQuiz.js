@@ -222,7 +222,7 @@ function plotarGrafico(resposta, numero) {
     let dados = {
         labels: labels,
         datasets: [{
-            label: 'Alternativas',
+            label: 'Quantidade',
             data: [],
             backgroundColor: [
                 'rgba(11, 188, 11, 0.8)',
@@ -249,14 +249,10 @@ function plotarGrafico(resposta, numero) {
             plugins: {
                 title: {
                     display: true,
-                    text: `Respostas`,
+                    text: `Respostas dos Usuários`,
                     font: {
                         size: 28
                     },
-                    padding: {
-                        top: 16,
-                        bottom: 16
-                    }
                 }
             }
         }

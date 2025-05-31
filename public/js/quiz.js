@@ -28,7 +28,6 @@ function exibirQuiz() {
                         console.log("Dados recebidos: ", JSON.stringify(resposta));
 
                         for (let i = 0; i < resposta.length; i++) {
-                            quizzes[i] = resposta[i];
                             let icone = '<img src="../img/icones/semSenhaImg.png" class="tipoQuiz" alt="Icone de quizzes públicos">'
 
                             if (resposta[i].senhaQuiz == '') {
