@@ -14,7 +14,7 @@
     <script src="../js/sessao.js"></script>
 </head>
 
-<body onload="validarSessao(), buscarFavoritos(), listarRanking()">
+<body onload="validarSessao(), buscarFavoritos(), listarRanking(), listarPorQuiz(), listarMeusQuizzes()">
     <header>
         <section class="container">
             <nav class="menu">
@@ -63,7 +63,7 @@
         </section>
     </header>
 
-   <main class="painel">
+    <main class="painel">
         <section class="container inicio">
             <h1 class="titulo"> Painel </h1>
 
@@ -86,20 +86,104 @@
         </section>
 
         <section class="container" id="quizzes">
-            <canvas id=""></canvas>
+            <section class="botoes-tipos-quizzes">
+                <button onclick="exibirGraficoQuiz('minhasRespostas')" class="btn-selecionado">
+                    Minhas Respostas
+                </button>
+
+                <button onclick="exibirGraficoQuiz('meusQuizzes')">
+                    Meus Quizzes
+                </button>
+            </section>
+
+            <section id="minhasRespostas">
+                <section id="kpi-minhas-respostas" class="kpi">
+                    <section class="indicador">
+                        <h2> Quiz com mais acertos </h2>
+                        <p></p>
+                    </section>
+                    <section class="indicador">
+                        <h2> Quiz com mais erros </h2>
+                        <p></p>
+                    </section>
+                    <section class="indicador">
+                        <h2> Média de acertos </h2>
+                        <p></p>
+                    </section>
+                </section>
+
+                <section class="fundo-grafico">
+                    <canvas id="dashboard-minhas-respostas"></canvas>
+                </section>
+            </section>
+
+            <section id="meusQuizzes">
+                <section id="kpi-meus-quizzes" class="kpi">
+                    <section class="indicador">
+                        <h2> Quiz com mais acertos </h2>
+                        <p></p>
+                    </section>
+                    <section class="indicador">
+                        <h2> Quiz com mais respostas </h2>
+                        <p></p>
+                    </section>
+                    <section class="indicador">
+                        <h2> Média de acertos </h2>
+                        <p></p>
+                    </section>
+                </section>
+
+                <section class="fundo-grafico">
+                    <canvas id="dashboard-meus-quizzes"></canvas>
+                </section>
+            </section>
         </section>
 
         <section class="container" id="personagens">
-            <canvas id="dashboard-favoritos"></canvas>
+            <section id="kpi-personagens" class="kpi">
+                <section class="indicador">
+                    <h2> Meu favorito </h2>
+                    <p></p>
+                </section>
+                <section class="indicador">
+                    <h2> Quantidade meu favorito </h2>
+                    <p></p>
+                </section>
+                <section class="indicador">
+                    <h2> Favorito de todos </h2>
+                    <p></p>
+                </section>
+            </section>
+
+            <section class="fundo-grafico">
+                <canvas id="dashboard-favoritos"></canvas>
+            </section>
         </section>
 
         <section class="container" id="ranking">
+            <h2 class="titulo menor"> Ranking Global </h2>
+
+            <section id="kpi-ranking" class="kpi">
+                <section class="indicador">
+                    <h2> Classificação Global </h2>
+                    <p></p>
+                </section>
+                <section class="indicador">
+                    <h2> Acertos </h2>
+                    <p></p>
+                </section>
+                <section class="indicador">
+                    <h2> Taxa de Acerto </h2>
+                    <p></p>
+                </section>
+            </section>
             <table>
-                <tr> 
+                <tr>
                     <th> Classificação </th>
                     <th> Usuário </th>
                     <th> Acertos </th>
-                    <th> Total Questões </th> 
+                    <th> Total Questões </th>
+                    <th> Taxa de Acerto </th>
                 </tr>
 
             </table>
@@ -115,4 +199,5 @@
 </body>
 
 <script src="../js/painel.js"></script>
+
 </html>

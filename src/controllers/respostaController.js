@@ -70,8 +70,48 @@ function listarRanking(req, res) {
         });
 }
 
+function listarPorQuiz(req, res) {
+    var idUsu = req.params.idUsu;
+
+    respostaModel.listarPorQuiz(idUsu)
+        .then(
+            function(resultado) {
+                if (resultado.length > 0) {
+                    res.status(200).json(resultado);
+                } else {
+                    res.status(204).send("Nenhum resultado encontrado!")
+                }
+            }
+        ).catch(function (erro) {
+            console.log(erro);
+            console.log("Houve um erro ao buscar as respostas dos quizzes: ", erro.sqlMessage);
+            res.status(500).json(erro.sqlMessage);
+        });
+}
+
+function listarMeusQuizzes(req, res) {
+    var idUsu = req.params.idUsu;
+
+    respostaModel.listarMeusQuizzes(idUsu)
+        .then(
+            function(resultado) {
+                if (resultado.length > 0) {
+                    res.status(200).json(resultado);
+                } else {
+                    res.status(204).send("Nenhum resultado encontrado!")
+                }
+            }
+        ).catch(function (erro) {
+            console.log(erro);
+            console.log("Houve um erro ao buscar as respostas dos meus quizzes: ", erro.sqlMessage);
+            res.status(500).json(erro.sqlMessage);
+        });
+}
+
 module.exports = {
     listarRespostas,
     cadastrarResposta,
-    listarRanking
+    listarRanking,
+    listarPorQuiz,
+    listarMeusQuizzes
 }

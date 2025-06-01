@@ -62,7 +62,8 @@ function listarFavoritos() {
 
     var instrucaoSql = `
          SELECT COUNT(fkpersonagemfavorito) qtd,
-            per.nome
+            per.nome,
+            per.id
         FROM usuario usu
         INNER JOIN personagem per ON per.id = usu.fkpersonagemfavorito
         GROUP BY fkpersonagemfavorito;

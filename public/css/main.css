@@ -286,15 +286,25 @@ main .card h2 {
     color: var(--corBotao);
 }
 
-.botoes-tipos {
+.botoes-tipos, .botoes-tipos-quizzes {
     width: 100%;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
     place-items: center;
+}
+
+.botoes-tipos {
+    grid-template-columns: 1fr 1fr 1fr;
     padding-top: 2rem;
 }
 
-.botoes-tipos button {
+.botoes-tipos-quizzes {
+    grid-template-columns: 1fr 1fr;
+    width: 80%;
+    margin: auto;
+    padding-bottom: 1rem;
+}
+
+.botoes-tipos button, .botoes-tipos-quizzes button {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -309,7 +319,11 @@ main .card h2 {
     color: var(--corTexto);
 }
 
-.botoes-tipos button img {
+.botoes-tipos-quizzes button {
+    padding: 1.5rem;
+}
+
+.botoes-tipos button img, .botoes-tipos-quizzes button img {
     filter: invert(100%);
     width: 1.5rem;
     height: 1.5rem;
@@ -323,11 +337,15 @@ main .card h2 {
     background-color: #ce8f07;
 }
 
-.botoes-tipos button:first-child {
+.botoes-tipos-quizzes .btn-selecionado {
+    background-color: #00759d;
+}
+
+.botoes-tipos button:first-child, .botoes-tipos-quizzes button:first-child {
     border-radius: 2rem 0 0 2rem;
 }
 
-.botoes-tipos button:last-child {
+.botoes-tipos button:last-child, .botoes-tipos-quizzes button:last-child {
     border-radius: 0 2rem 2rem 0;
 }
 
@@ -510,6 +528,10 @@ td {
     background-color: var(--corCard);
 }
 
+tr.usu td {
+    background-color: var(--corAzul);
+}
+
 th, td {
     padding: 1rem 2rem;
     text-align: center;
@@ -519,4 +541,61 @@ td p {
     display: flex;
     align-items: center;
     gap: 1rem;
+}
+
+.kpi {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    place-items: center;
+    background-color: var(--corCard);
+    border-radius: 2rem;
+    margin-bottom: 1rem;
+}
+
+.kpi .indicador {
+    padding: 2rem;
+}
+
+.kpi .indicador h2 {
+    font-weight: 500;
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+.kpi .indicador p {
+    padding-top: 0.5rem;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.painel .botoes-tipos {
+    padding-top: 0.5rem;
+}
+
+.painel .container .titulo {
+    text-align: center;
+}
+
+.painel .container .menor {
+    font-size: 2rem;
+    padding-bottom: 0.5rem;
+}
+
+.fundo-grafico {
+    width: 85%;
+    padding: 0.5rem;
+    margin: auto;
+    background: linear-gradient(to right, #051937, #00446b, #00759d);
+}
+
+.painel #quizzes #minhasRespostas,
+.painel #quizzes #meusQuizzes {
+    display: none;
+}
+
+.painel .secaoBotaoLink {
+    display: flex;
+    justify-content: center;
+    padding-top: 1rem;
 }

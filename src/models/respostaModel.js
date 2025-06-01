@@ -42,8 +42,49 @@ function listarRanking() {
     return database.executar(instrucaoSql);
 }
 
+function listarPorQuiz(idUsu) {
+    console.log("ACESSEI O RESPOSTA MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listarPorQuiz(): ");
+
+    var instrucaoSql = `
+        SELECT quiz.titulo, 
+            SUM(CASE 
+                WHEN alternativaEscolhida = alternativaCorreta THEN 1
+                ELSE 0
+                END) as acertos
+        FROM resposta res
+        INNER JOIN pergunta per ON per.fkquiz = res.fkquiz AND per.numero = res.fkpergunta
+        INNER JOIN quiz ON quiz.id = res.fkquiz
+        WHERE res.fkusuario = ${idUsu}
+        GROUP BY res.fkquiz;
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function listarMeusQuizzes(idUsu) {
+    console.log("ACESSEI O RESPOSTA MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listarMeusQuizzes(): ");
+
+    var instrucaoSql = `
+        SELECT quiz.titulo, 
+            SUM(CASE 
+                WHEN alternativaEscolhida = alternativaCorreta THEN 1
+                ELSE 0
+                END) as acertos,
+			COUNT(res.fkusuario) as totalRespostas
+        FROM resposta res
+        INNER JOIN pergunta per ON per.fkquiz = res.fkquiz AND per.numero = res.fkpergunta
+        INNER JOIN quiz ON quiz.id = res.fkquiz
+        WHERE quiz.fkusuario = ${idUsu}
+        GROUP BY res.fkquiz;
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
     listarRespostas,
     cadastrarResposta,
-    listarRanking
+    listarRanking,
+    listarPorQuiz,
+    listarMeusQuizzes
 };

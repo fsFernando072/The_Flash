@@ -15,4 +15,12 @@ router.get("/listarRanking", function (req, res) {
     respostaController.listarRanking(req, res);
 })
 
+router.get("/listarPorQuiz/:idUsu", function (req, res) {
+    respostaController.listarPorQuiz(req, res);
+})
+
+router.get("/listarMeusQuizzes/:idUsu", function (req, res) {
+    respostaController.listarMeusQuizzes(req, res);
+})
+
 module.exports = router;
