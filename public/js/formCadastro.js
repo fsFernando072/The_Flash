@@ -11,6 +11,8 @@ function verificar() {
 
     let erros = ``;
 
+    let emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
     if (nome == '' || email == '' || senha == '' || confSenha == '') {
         erros += `<p>  <img src="img/icones/erroImg.png" alt="Icone de erro" class="iconesPeq"> Um ou mais campos estão vazios </p>`;
     }
@@ -19,7 +21,7 @@ function verificar() {
         erros += `<p> <img src="img/icones/erroImg.png" alt="Icone de erro" class="iconesPeq"> O nome deve conter mais de 1 caracter </p>`;
     }
     
-    if (email.indexOf('@') == -1 || (email.indexOf('@') > email.indexOf('.'))) {
+    if (!emailRegex.test(email)) {
         erros += `<p> <img src="img/icones/erroImg.png" alt="Icone de erro" class="iconesPeq"> O e-mail é inválido </p>`;
     }
     

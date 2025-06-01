@@ -599,3 +599,7 @@ td p {
     justify-content: center;
     padding-top: 1rem;
 }
+
+.responder .kpi {
+    display: block;
+}

@@ -88,11 +88,13 @@ function editarPerfil() {
 
     let erros = ``;
 
+    let emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
     if (novaSenha == '') {
         novaSenha = sessionStorage.SENHA;
     }
 
-    if (email.indexOf('@') == -1 || (email.indexOf('@') > email.indexOf('.'))) {
+    if (!emailRegex.test(email)) {
         erros += `<p> <img src="../img/icones/erroImg.png" alt="Icone de erro" class="iconesPeq"> O e-mail é inválido </p>`;
     }
 

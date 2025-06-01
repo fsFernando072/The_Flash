@@ -88,7 +88,17 @@ function exibirPerguntas(quiz) {
 
                             conteudo += `</section></section>`;
 
-                            conteudo += `<section class="grafico-resposta"> <canvas id="dashboard-per${i + 1}"></canvas> </section>`;
+                            conteudo += `<section class="grafico-resposta"> 
+                                            <section class="kpi">
+                                                <section class="indicador">
+                                                    <h2> Total de Respostas </h2>
+                                                    <p></p>
+                                                </section>
+                                            </section>
+                                            <section class="fundo-grafico">
+                                                <canvas id="dashboard-per${i + 1}"></canvas>
+                                            </section> 
+                                        </section>`;
                         }
                     }
 
@@ -193,8 +203,11 @@ function exibirRespostas(perguntas) {
                             inputRadio.forEach(input => {
                                 input.disabled = true;
                             });
+                        
+                            let indicadores = document.querySelectorAll('.kpi .indicador p');
 
                             for (let i = 0; i < 5; i++) {
+                                indicadores[i].innerHTML = vetorQtd[i].Certas + vetorQtd[i].Erradas;
                                 plotarGrafico(vetorQtd[i], i);
                             }
                         }
