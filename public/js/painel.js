@@ -401,7 +401,7 @@ function plotarGraficoQuizzes(resposta) {
         dados.datasets[1].data.push(resposta[i].acertos);
     }
 
-    let media = soma / resposta.length / 5;
+    let media = soma / resposta.length;
 
     indicadores[0].innerHTML = `${resposta[indiceMaisAcertos].titulo}`;
     indicadores[1].innerHTML = `${resposta[indiceMaisRespostas].titulo}`;

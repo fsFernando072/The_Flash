@@ -25,6 +25,18 @@ main {
     gap: 3rem;
 }
 
+.conteudo img {
+    border: 0.2rem solid var(--corBotao);
+}
+
+#sobre-mim .conteudo {
+    justify-content: space-around;
+}
+
+#sobre-mim img {
+    border-radius: 50%;
+}
+
 #flash {
     display: flex;
     flex-direction: column;
@@ -45,6 +57,10 @@ main {
 .conteudo p {
     text-align: justify;
     line-height: 2rem;
+}
+
+.conteudo u {
+    color: var(--corBotao);
 }
 
 main .cards {
@@ -577,7 +593,7 @@ td p {
     text-align: center;
 }
 
-.painel .container .menor {
+.menor {
     font-size: 2rem;
     padding-bottom: 0.5rem;
 }
