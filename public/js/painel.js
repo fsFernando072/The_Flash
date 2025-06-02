@@ -442,6 +442,7 @@ function listarRanking() {
             let conteudo = '';
 
             let indicadores = document.querySelectorAll('#kpi-ranking .indicador p');
+            let respondeu = false;
 
             if (resposta.ok) {
                 if (resposta.statusText != 'No Content') {
@@ -449,6 +450,7 @@ function listarRanking() {
                         for (let i = 0; i < resposta.length; i++) {
                             if (resposta[i].id == sessionStorage.ID_USUARIO) {
                                 conteudo += `<tr class="usu">`;
+                                respondeu = true;
 
                                 indicadores[0].innerHTML = `#${i + 1}`;
                                 indicadores[1].innerHTML = `${resposta[i].acertos}`;
@@ -468,6 +470,12 @@ function listarRanking() {
                                 <td> ${resposta[i].totalQuestoes} </td>
                                 <td> ${(resposta[i].acertos / resposta[i].totalQuestoes * 100).toFixed(1)}% </td>
                             </tr>`;
+                        }
+
+                        if (!respondeu) {
+                            indicadores[0].innerHTML = `Você ainda não respondeu nenhum quiz`;
+                            indicadores[1].innerHTML = `Você ainda não respondeu nenhum quiz`;
+                            indicadores[2].innerHTML = `Você ainda não respondeu nenhum quiz`;
                         }
 
                         tabela.innerHTML += conteudo;

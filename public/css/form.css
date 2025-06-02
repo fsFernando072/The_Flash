@@ -224,6 +224,7 @@ label {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    visibility: hidden;
 }
 
 .quiz {

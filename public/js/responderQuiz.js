@@ -205,8 +205,10 @@ function exibirRespostas(perguntas) {
                             });
                         
                             let indicadores = document.querySelectorAll('.kpi .indicador p');
+                            let secaoGrafico = document.querySelectorAll('.grafico-resposta');
 
                             for (let i = 0; i < 5; i++) {
+                                secaoGrafico[i].style.visibility = 'visible';
                                 indicadores[i].innerHTML = vetorQtd[i].Certas + vetorQtd[i].Erradas;
                                 plotarGrafico(vetorQtd[i], i);
                             }
