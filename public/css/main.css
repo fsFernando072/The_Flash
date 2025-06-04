@@ -35,6 +35,14 @@ main {
 
 #sobre-mim img {
     border-radius: 50%;
+    width: 30rem;
+}
+
+#sobre-mim ol {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    font-size: 1.2rem;
 }
 
 #flash {
