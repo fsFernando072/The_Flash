@@ -257,7 +257,7 @@ function exibirPerguntas() {
     let conteudo = '';
     for (let i = 1; i <= 5; i++) {
         conteudo += `<section class="addquiz">`;
-        conteudo += `<h1 class="titulo"> Pergunta ${i} </h1>`;
+        conteudo += `<h1 class="titulo"> Pergunta ${i} de 5 </h1>`;
 
         conteudo += `<label for="pergunta${i}"> Pergunta </label>`;
         conteudo += `<input type="text" name="pergunta${i}" id="pergunta${i}" placeholder="Digite a pergunta">`;

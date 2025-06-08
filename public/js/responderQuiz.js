@@ -63,7 +63,7 @@ function exibirPerguntas(quiz) {
 
                         } else {
                             conteudo += `<section class="responder-quiz">`;
-                            conteudo += `<h1 class="titulo"> Pergunta ${i} </h1>`;
+                            conteudo += `<h1 class="titulo"> Pergunta ${i} de 5 </h1>`;
 
                             conteudo += `<label> ${resposta[i - 1].pergunta} </label>`;
 
@@ -203,6 +203,9 @@ function exibirRespostas(perguntas) {
                             inputRadio.forEach(input => {
                                 input.disabled = true;
                             });
+
+                            let primBotao = document.querySelectorAll('.botoes .botaoLink')[0];
+                            primBotao.innerHTML = 'Ver Resultados';
                         
                             let indicadores = document.querySelectorAll('.kpi .indicador p');
                             let secaoGrafico = document.querySelectorAll('.grafico-resposta');
